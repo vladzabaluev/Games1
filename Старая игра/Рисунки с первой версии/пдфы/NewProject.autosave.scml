@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r4.1">
+    <folder id="0">
+        <file id="0" name="нихуевый злодей-06.png" width="109" height="169" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="нихуевый злодей-07.png" width="50" height="57" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="нихуевый злодей-05.png" width="50" height="61" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="нихуевый злодей-04.png" width="117" height="54" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="нихуевый злодей-02.png" width="89" height="86" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="нихуевый злодей-03.png" width="234" height="51" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="NewAnimation" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="1" time="84">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="2" time="101">
+                    <object_ref id="0" timeline="2" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="3" time="103">
+                    <object_ref id="0" timeline="2" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="4" time="143">
+                    <object_ref id="0" timeline="2" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="5" time="584">
+                    <object_ref id="0" timeline="2" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="1" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="6" time="912">
+                    <object_ref id="0" timeline="2" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="1" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="1" z_index="5"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="нихуевый злодей-06">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-55.354839" y="162.032258"/>
+                </key>
+                <key id="1" time="143" spin="0">
+                    <object folder="0" file="0" x="-52.935484" y="153.967742"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="нихуевый злодей-07">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-42.387097" y="35.387097"/>
+                </key>
+                <key id="1" time="84" spin="0">
+                    <object folder="0" file="1" x="-44" y="24.096774"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="нихуевый злодей-05">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-3.290323" y="28.709677"/>
+                </key>
+                <key id="1" time="101" spin="0">
+                    <object folder="0" file="2" x="-3.290323" y="40.806452"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="нихуевый злодей-04">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-60.548387" y="199.612903"/>
+                </key>
+                <key id="1" time="103" spin="0">
+                    <object folder="0" file="3" x="-59.741935" y="192.354839"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="нихуевый злодей-02">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-41.935484" y="163.709677"/>
+                </key>
+                <key id="1" time="584" spin="0">
+                    <object folder="0" file="4" x="-43.548387" y="158.870968"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="нихуевый злодей-03">
+                <key id="0" spin="-1">
+                    <object folder="0" file="5" x="-165.322581" y="77.419355"/>
+                </key>
+                <key id="1" time="912">
+                    <object folder="0" file="5" x="-165.322581" y="77.419355" angle="357.797402" scale_y="1"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

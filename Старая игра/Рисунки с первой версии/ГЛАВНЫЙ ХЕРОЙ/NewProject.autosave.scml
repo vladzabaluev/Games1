@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r4.1">
+    <folder id="0">
+        <file id="0" name="ГГ-02-02.png" width="278" height="279" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="ГГ-02-05.png" width="83" height="47" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="ГГ-02-08.png" width="247" height="72" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="ГГ-02-10.png" width="59" height="49" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="ГГ-02-09.png" width="59" height="49" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="HOLD" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="3" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="4" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="1" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="2" key="0" z_index="4"/>
+                </key>
+                <key id="1" time="393">
+                    <object_ref id="0" timeline="3" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="4" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="1" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="2" key="1" z_index="4"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ГГ-02-02">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-158" y="171"/>
+                </key>
+                <key id="1" time="393" spin="0">
+                    <object folder="0" file="0" x="-157.382716" y="162.975309"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ГГ-02-05">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-2" y="57"/>
+                </key>
+                <key id="1" time="393" spin="0">
+                    <object folder="0" file="1" x="-1.382716" y="48.975309"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="ГГ-02-08">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-97" y="-14"/>
+                </key>
+                <key id="1" time="393" spin="0">
+                    <object folder="0" file="2" x="-96.382716" y="-22.024691"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="ГГ-02-10">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="8.234568" y="-72.76543"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="ГГ-02-09">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-41.679012" y="-72.765432"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="1" name="entity_001">
+        <animation id="0" name="RUN" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                </key>
+                <key id="1" time="295">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                </key>
+                <key id="2" time="302">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                </key>
+                <key id="3" time="432">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="1" z_index="4"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ГГ-02-10">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="8.234568" y="-72.76543"/>
+                </key>
+                <key id="1" time="302" spin="0">
+                    <object folder="0" file="3" x="7" y="-61.037035"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ГГ-02-09">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-41.061728" y="-63.5"/>
+                </key>
+                <key id="1" time="295" spin="0">
+                    <object folder="0" file="4" x="-42.296296" y="-75.845679"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="ГГ-02-02">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-158" y="171"/>
+                </key>
+                <key id="1" time="432" spin="0">
+                    <object folder="0" file="0" x="-161.703704" y="171"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="ГГ-02-05">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-2" y="57"/>
+                </key>
+                <key id="1" time="432" spin="0">
+                    <object folder="0" file="1" x="-5.703704" y="57"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="ГГ-02-08">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-97" y="-14"/>
+                </key>
+                <key id="1" time="432" spin="0">
+                    <object folder="0" file="2" x="-100.703704" y="-14"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="2" name="entity_002">
+        <animation id="0" name="JUMP" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                </key>
+                <key id="1" time="155">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="1" z_index="4"/>
+                </key>
+                <key id="2" time="244">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="2" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="2" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="2" z_index="4"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ГГ-02-10">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="8.234568" y="-72.76543"/>
+                </key>
+                <key id="1" time="155" spin="0">
+                    <object folder="0" file="3" x="8.234568" y="-72.66006" scale_y="0.789259"/>
+                </key>
+                <key id="2" time="244" spin="0">
+                    <object folder="0" file="3" x="8.234568" y="-72.610678" scale_y="0.690494"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ГГ-02-09">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-41.679012" y="-72.765432"/>
+                </key>
+                <key id="1" time="155" spin="0">
+                    <object folder="0" file="4" x="-41.679012" y="-72.660062" scale_y="0.789259"/>
+                </key>
+                <key id="2" time="244" spin="0">
+                    <object folder="0" file="4" x="-41.679012" y="-72.610679" scale_y="0.690494"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="ГГ-02-02">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-158" y="171"/>
+                </key>
+                <key id="1" time="155" spin="0">
+                    <object folder="0" file="0" x="-158" y="119.734063" scale_y="0.789259"/>
+                </key>
+                <key id="2" time="244" spin="0">
+                    <object folder="0" file="0" x="-158" y="95.707847" scale_y="0.690494"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="ГГ-02-05">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-2" y="57"/>
+                </key>
+                <key id="1" time="155" spin="0">
+                    <object folder="0" file="1" x="-2" y="29.758507" scale_y="0.789259"/>
+                </key>
+                <key id="2" time="244" spin="0">
+                    <object folder="0" file="1" x="-2" y="16.991551" scale_y="0.690494"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="ГГ-02-08">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-97" y="-14"/>
+                </key>
+                <key id="1" time="155" spin="0">
+                    <object folder="0" file="2" x="-97" y="-26.2789" scale_y="0.789259"/>
+                </key>
+                <key id="2" time="244" spin="0">
+                    <object folder="0" file="2" x="-97" y="-32.033511" scale_y="0.690494"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="3" name="entity_003">
+        <animation id="0" name="attack" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ГГ-02-10">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="8.234568" y="-72.76543"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ГГ-02-09">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-41.679012" y="-72.765432"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="ГГ-02-02">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-158" y="171"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="ГГ-02-08">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-97" y="-14"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
