@@ -25,6 +25,7 @@ public class Ball : MonoBehaviour
 
     public Check check;
 
+    public float degrees;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +37,7 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        theBall.transform.Rotate(new Vector3(0, 0, degrees) * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

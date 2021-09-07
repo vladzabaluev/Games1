@@ -25,6 +25,12 @@ public class GroundCheck : MonoBehaviour
         Hero.GetComponent<Player>().canJump = true;
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        anim.SetBool("isJump", false);
+        Hero.GetComponent<Player>().canJump = true;
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         Hero.GetComponent<Player>().canJump = false;
