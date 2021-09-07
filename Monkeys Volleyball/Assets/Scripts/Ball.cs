@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
 {
@@ -9,17 +10,27 @@ public class Ball : MonoBehaviour
     public float force = 40;
     public float power = 20;
 
-    int scoreFP = 0; //first player
-    int scoreSP = 0; //second player
-
     public Transform FPBallSpawner;
     public Transform SPBallSpawner;
+
+    public Transform FPStartPoint;
+    public Transform SPStartPoint;
+
+    public GameObject Player1;
+    public GameObject Player2;
+
     public GameObject theBall;
-    public GameObject createdBall;
+
+    public ParticleSystem GoalSygnal;
+
+    public Check check;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = theBall.GetComponent<Rigidbody2D>();
+        goToStartPosition();
+        whoseBall();
     }
 
     // Update is called once per frame
@@ -31,25 +42,30 @@ public class Ball : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-        {       
+        {
             rb.AddForce(10 * Vector3.up * force);
-           // theBall.GetComponent<Rigidbody2D>().AddForce(10 * Vector3.up * force);
         }
         if (collision.CompareTag("Wall"))
         {
-            rb.AddForce(power * Vector2.Reflect(transform.position, Vector2.right));
-        }       
+            //rb.AddForce(power * Vector2.Reflect(transform.position, Vector2.right));
+            rb.velocity = new Vector2(-rb.velocity.x, rb.velocity.y);
+        }
         if (collision.CompareTag("FirstPlayerBot"))
         {
-            Debug.Log(++scoreSP);
-            Destroy(theBall);
-            Instantiate(theBall, FPBallSpawner.position, Quaternion.identity);
+            check.SecondPlayerScored();
+
+            theBall.transform.position = FPBallSpawner.position;
+            rb.velocity = new Vector2(0, 0);
+
+            goToStartPosition();
         }
         else if (collision.CompareTag("SecondPlayerBot"))
         {
-            Debug.Log(++scoreFP);
-            Destroy(theBall);
-            Instantiate(theBall, SPBallSpawner.position, Quaternion.identity);
+            check.FirstPlayerScored();
+            theBall.transform.position = SPBallSpawner.position;
+            rb.velocity = new Vector2(0, 0);
+
+            goToStartPosition();          
         }
 
     }
@@ -60,9 +76,26 @@ public class Ball : MonoBehaviour
         {
             rb.AddForce(Vector3.up * force);
         }
-        if (collision.CompareTag("Wall"))
+    }
+
+    void goToStartPosition()
+    {
+        Player1.transform.position = FPStartPoint.position;
+        Player1.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        Player2.transform.position = SPStartPoint.position;
+        Player2.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+    }
+
+    void whoseBall()
+    {
+        int whoseMove = Random.Range(1, 3);
+        if (whoseMove == 1)
         {
-            rb.AddForce(power * Vector2.Reflect(transform.position, Vector2.right));
+            theBall.transform.position = FPBallSpawner.position;
+        }
+        else
+        {
+            theBall.transform.position = SPBallSpawner.position;
         }
     }
 }
