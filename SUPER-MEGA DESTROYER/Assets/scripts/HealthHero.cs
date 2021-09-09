@@ -19,10 +19,12 @@ public class HealthHero : MonoBehaviour
         {
             health = numberOfLives;
         }
+
         if (health<=0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
         }
+
         for (int i = 0; i < lives.Length; i++)
         {
             if (i < health)

@@ -8,6 +8,11 @@ TagManager:
   - Fire
   - BombOrBul
   - EndLVL
+  - Enemy
+  - BullClip
+  - Destroyer
+  - Spawner
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -23,7 +28,7 @@ TagManager:
   - Bullets
   - Ammo
   - Player
-  - 
+  - Enviroment
   - 
   - 
   - 

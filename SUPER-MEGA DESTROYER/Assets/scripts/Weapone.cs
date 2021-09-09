@@ -10,22 +10,30 @@ public class Weapone : MonoBehaviour
 
     private float TimeShot;
     public float StartTime;
-    public int CurrentBul=30;
-    public int AllBul=0;
-    public int FullBul=120;
+    public int startBullets = 20;
+    int currentBullets;
+    int bulClip;
+    int bulletsLeft = 0;
 
     [SerializeField]
     private Text BulCount;
+
+    private void Start()
+    {
+        bulClip = startBullets;
+        currentBullets = startBullets;
+
+    }
 
     void Update()
     {
         if (TimeShot <= 0)
         {
-            if (Input.GetButtonDown("Fire1") && CurrentBul>0)
+            if (Input.GetButtonDown("Fire1"))
             {
                 Shoot();
                 TimeShot = StartTime;
-                CurrentBul -= 1;
+                currentBullets--;
             }
         }
         else
@@ -33,11 +41,12 @@ public class Weapone : MonoBehaviour
             TimeShot -= Time.deltaTime;
         }
 
-        BulCount.text = CurrentBul + " / " + AllBul;
-        if (Input.GetKeyDown(KeyCode.R) && AllBul>0)
+        BulCount.text = currentBullets + " / " + bulletsLeft ;
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft > 0)
         {
             Reload();
         }
+
     }
 
     void Shoot()
@@ -47,26 +56,26 @@ public class Weapone : MonoBehaviour
 
     void Reload()
     {
-        int reason = 15 - CurrentBul;
-        if (AllBul >= reason)
+        int reason = bulClip - currentBullets;
+        if (bulletsLeft >= reason )
         {
-            AllBul -= reason;
-            CurrentBul = 15;
+            bulletsLeft -= reason;
+            currentBullets = startBullets;
         }
         else
         {
-            CurrentBul += AllBul;
-            AllBul = 0;
+            currentBullets += bulletsLeft;
+            bulletsLeft = 0;
         }
-        
-       
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<BulClip>())
+        if (collision.CompareTag("BullClip"))
         {
-            AllBul += 15;
+            bulletsLeft += bulClip;
             Destroy(collision.gameObject);
         }
 

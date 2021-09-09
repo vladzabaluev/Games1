@@ -80,8 +80,8 @@ public class CameraContoler : MonoBehaviour
         Gizmos.DrawLine(new Vector2(rightLimit, bottomLimit), new Vector2(rightLimit, upperLimit));
         Gizmos.DrawLine(new Vector2(leftLimit, bottomLimit), new Vector2(leftLimit, bottomLimit));
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(new Vector2(leftLimit-15, bottomLimit ), new Vector2(leftLimit-15, upperLimit + 8));
-        Gizmos.DrawLine(new Vector2(rightLimit + 15, bottomLimit ), new Vector2(rightLimit + 15, upperLimit + 8)) ;
-        Gizmos.DrawLine(new Vector2(leftLimit - 15, upperLimit + 8), new Vector2(rightLimit + 15, upperLimit + 8));
+        Gizmos.DrawLine(new Vector2(leftLimit+leftLimit, bottomLimit ), new Vector2(leftLimit+leftLimit, upperLimit + 8));
+        Gizmos.DrawLine(new Vector2(rightLimit + rightLimit, bottomLimit ), new Vector2(rightLimit + rightLimit, upperLimit + 8)) ;
+        Gizmos.DrawLine(new Vector2(leftLimit - leftLimit, upperLimit + 8), new Vector2(rightLimit + rightLimit, upperLimit + 8));
     }
 }

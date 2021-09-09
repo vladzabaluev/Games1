@@ -15,7 +15,9 @@ public class Terminator3000 : MonoBehaviour
     public int health = 9;
 
     public GameObject BulEnemy;
-    public Transform point;
+    //Transform point;
+
+    float startX;
     public Transform pointForBullet;
 
     public bool moveRight=true;
@@ -28,19 +30,24 @@ public class Terminator3000 : MonoBehaviour
 
     [SerializeField]
     private Transform rightHand;
+    
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
         Physics2D.queriesStartInColliders = false;
         timeBtwShots = startTimeBtwShots;
+
+        startX = transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, point.position) < positionOfPatrol && angry == false)
+        if (transform.position.x - startX < positionOfPatrol 
+            || (transform.position.y > player.position.y + 2 || transform.position.y < player.position.y - 2) && !angry) 
         {
             calm = true;
         }
@@ -95,17 +102,18 @@ public class Terminator3000 : MonoBehaviour
 
     void Calm()
     {
-        if (transform.position.x > point.position.x + positionOfPatrol)//transform.position + positionOfPatrol))/
+
+        if(transform.position.x>startX+positionOfPatrol)
         {
             moveRight = false;
             transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
-       
-        if (transform.position.x < point.position.x - positionOfPatrol)
+        else if (transform.position.x < startX - positionOfPatrol)
         {
             moveRight = true;
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
+
 
         if (moveRight)
         {
@@ -143,14 +151,16 @@ public class Terminator3000 : MonoBehaviour
     }
     void Ochkonul()
     {
-        transform.position = Vector2.MoveTowards(transform.position, point.position, speed * Time.deltaTime);
-        if (transform.position.x < point.position.x - positionOfPatrol)
+
+        transform.position = Vector2.MoveTowards(transform.position, new Vector2(startX, transform.position.y), speed * Time.deltaTime);
+
+        if (transform.position.x < startX - positionOfPatrol)
         {
             moveRight = true;
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
-        if (transform.position.x > point.position.x + positionOfPatrol)
+        if (transform.position.x > startX + positionOfPatrol)
         {
             moveRight = false;
             transform.localRotation = Quaternion.Euler(0, 180, 0);

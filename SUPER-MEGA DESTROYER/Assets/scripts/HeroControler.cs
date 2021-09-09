@@ -16,7 +16,7 @@ public class HeroControler : MonoBehaviour
     [SerializeField]
     private Transform checkground;
 
-    bool isGrounded;
+    public bool isGrounded;
 
     //
     void Start()
@@ -26,16 +26,7 @@ public class HeroControler : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
-    {
-        if (Physics2D.Linecast(transform.position, checkground.position, 1 << LayerMask.NameToLayer("Ground")))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-        
+    {      
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
         Flip();
     }
@@ -51,7 +42,7 @@ public class HeroControler : MonoBehaviour
         {
            anim.SetBool("AreYouRunnig", false);
         }
-        if (Input.GetAxis("Horizontal") != 0)
+        else 
         {         
            anim.SetBool("AreYouRunnig", true);
         }
@@ -72,7 +63,7 @@ public class HeroControler : MonoBehaviour
     {
         if (collider.CompareTag("Fire"))
         {
-            Invoke(nameof(ReloadLevel), 0.2f);
+            Invoke(nameof(ReloadLevel),0);
         }
 
     }

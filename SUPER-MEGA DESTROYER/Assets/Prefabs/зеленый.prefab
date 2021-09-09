@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7599091885105648421}
   m_Layer: 10
   m_Name: "\u0437\u0435\u043B\u0435\u043D\u044B\u0439"
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7599091885105648447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.95, y: -2.46, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7599091885230177552}
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 7dfbf339afebf8446b6f9d1e2a197400, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -155,7 +155,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -203,7 +203,6 @@ MonoBehaviour:
   health: 9
   BulEnemy: {fileID: 3935180856206010304, guid: a1630b8c5d76e7b459738fb9799e6660,
     type: 3}
-  point: {fileID: 0}
   pointForBullet: {fileID: 8535856383691492099}
   moveRight: 1
   rightHand: {fileID: 7599091885230177552}
@@ -231,7 +230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7599091885230177553}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.17, y: -0.3, z: -29.279137}
+  m_LocalPosition: {x: 2.86, y: -0.32, z: -29.279137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7599091885105648442}

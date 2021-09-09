@@ -44,21 +44,21 @@ public class Bomb : MonoBehaviour
     {
         Instantiate(boomEffect, transform.position, transform.rotation);
        
-        if (Vector2.Distance(transform.position, player.position) <= radius)
-        {
+        //if (Vector2.Distance(transform.position, player.position) <= radius)
+        //{
          
-            if (transform.position.x >= player.position.x)
-            {
-                // playerRB.AddForce(player.forward * power);
-                playerRB.AddForce(new Vector2(-power, 5), ForceMode2D.Impulse);
-            }
-            if (transform.position.x <= player.position.x)
-            {
-                //  playerRB.AddForce(player.forward * power);
-                playerRB.AddForce(new Vector2(power, 5), ForceMode2D.Impulse);
-            }
+        //    if (transform.position.x >= player.position.x)
+        //    {
+        //        // playerRB.AddForce(player.forward * power);
+        //        playerRB.AddForce(new Vector2(-power, 5), ForceMode2D.Impulse);
+        //    }
+        //    if (transform.position.x <= player.position.x)
+        //    {
+        //        //  playerRB.AddForce(player.forward * power);
+        //        playerRB.AddForce(new Vector2(power, 5), ForceMode2D.Impulse);
+        //    }
 
-        }
+        //}
         Destroy(gameObject);
    
     }

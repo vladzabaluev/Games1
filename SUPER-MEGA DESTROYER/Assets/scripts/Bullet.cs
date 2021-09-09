@@ -7,23 +7,25 @@ public class Bullet : MonoBehaviour
     public int damage=3;
 
     public float speed=5f;
-    public Rigidbody2D rb;
+    Rigidbody2D rb;
 
+    public float timeBeforeDestroy = 1.5f;
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
-        Destroy(gameObject, 1.5F);
+        Destroy(gameObject, timeBeforeDestroy);
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log(collider.name); 
-        Terminator3000 bot3000 = collider.GetComponent<Terminator3000>();
-
-        if (bot3000 != null)
+        if (collider.CompareTag("Enemy"))
         {
+            Terminator3000 bot3000 = collider.GetComponent<Terminator3000>();
+
             bot3000.TakeDamage(damage);
         }
+
         Destroy(gameObject);
     }
 
