@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
-        {
-            Destroy(other.gameObject);
-        }
+        Destroy(other.gameObject);
     }
 }

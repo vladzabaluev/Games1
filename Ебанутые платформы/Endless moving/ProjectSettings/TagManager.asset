@@ -7,6 +7,7 @@ TagManager:
   - BotPoint
   - TopPoint
   - Enemy
+  - Score
   layers:
   - Default
   - TransparentFX

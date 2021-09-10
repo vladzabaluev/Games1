@@ -6,7 +6,10 @@ public class EnemyMoving : MonoBehaviour
 {
     public float minSpeed;
     public float maxSpeed;
+
     float speed;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +20,6 @@ public class EnemyMoving : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
-        
+
     }
 }

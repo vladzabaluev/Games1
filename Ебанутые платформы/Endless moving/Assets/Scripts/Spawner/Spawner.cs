@@ -23,15 +23,15 @@ public class Spawner : MonoBehaviour
         if (timeBtwSpawns <= 0)
         {
             int rand=1;
-            if (Hero.score < 10)
+            if (Score.score < 10)
             {
                 rand = 2;
             }
-            else if (Hero.score < 20)
+            else if (Score.score < 20)
             {
                 rand = 3;
             }
-            else if (Hero.score < 30)
+            else if (Score.score < 30)
             {
                 rand = 4;
             }
@@ -50,6 +50,9 @@ public class Spawner : MonoBehaviour
 
     private void spawn()
     {
-        Instantiate(platforms, new Vector3(botSpawner.transform.position.x, Random.Range(botSpawner.transform.position.y, topSpawner.transform.position.y), botSpawner.transform.position.z), Quaternion.identity);
+        Vector3 spawnPlace = new Vector3(botSpawner.transform.position.x, 
+            Random.Range(botSpawner.transform.position.y, topSpawner.transform.position.y), 
+            botSpawner.transform.position.z);
+        Instantiate(platforms, spawnPlace, Quaternion.identity);
     }
 }
