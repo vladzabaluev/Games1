@@ -36,6 +36,7 @@ public class Ladder : MonoBehaviour
             else if (Input.GetKey(KeyCode.S)) 
             {
                 rb.velocity = new Vector2(0, -speed);
+                OnTriggerExit2D(collision);
             }
             else
             {

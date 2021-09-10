@@ -30,12 +30,14 @@ public class Terminator3000 : MonoBehaviour
 
     [SerializeField]
     private Transform rightHand;
-    
 
+    int playerMask;
+    float attackRange;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerMask = LayerMask.NameToLayer("Player");
 
         Physics2D.queriesStartInColliders = false;
         timeBtwShots = startTimeBtwShots;
@@ -46,18 +48,21 @@ public class Terminator3000 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x - startX < positionOfPatrol 
-            || (transform.position.y > player.position.y + 2 || transform.position.y < player.position.y - 2) && !angry) 
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, attackRange, playerMask, 0, 0);
+
+        //if (transform.position.x - startX < positionOfPatrol && !angry && hit.collider == null) 
+        if (!hit.collider)
         {
             calm = true;
         }
-        if (Vector2.Distance(transform.position, player.position) < stoppingDistance)
+        if (Vector2.Distance(transform.position, player.position) < stoppingDistance && hit.collider)
         {
+
             angry = true;
             calm = false;
             strah = false;
         }
-        if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
+        else if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
         {
             strah = true;
             angry = false;
@@ -78,26 +83,18 @@ public class Terminator3000 : MonoBehaviour
 
         if (moveRight == true)
         {
-
-           if (Physics2D.Linecast(transform.position, rightHand.position, 1 << LayerMask.NameToLayer("Wall")))
-
+            if (Physics2D.Linecast(transform.position, rightHand.position, 1 << LayerMask.NameToLayer("Wall")))
             {
-            
                 rb.velocity = new Vector2(rb.velocity.x, powerOfJump);
             }
         }
         else if (moveRight == false)
-        {
-            
+        {           
             if (Physics2D.Linecast(transform.position, rightHand.position, 1 << LayerMask.NameToLayer("Wall")))
-            {
-                
+            {                
                 rb.velocity = new Vector2(rb.velocity.x, powerOfJump);
             }
         }
-
-     
-
     }
 
     void Calm()
@@ -174,5 +171,6 @@ public class Terminator3000 : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
 }
