@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class Hero : MonoBehaviour
@@ -79,6 +80,12 @@ public class Hero : MonoBehaviour
         deadEffect.transform.position = gameObject.transform.position;
         deadEffect.SetActive(true);
         gameObject.SetActive(false);
+        //Invoke(nameof(Restart), 0.5f);
+        Invoke(nameof(PauseMenu.Restart), 0.5f);
     }
     
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
