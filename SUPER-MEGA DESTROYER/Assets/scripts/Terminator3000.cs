@@ -7,7 +7,7 @@ public class Terminator3000 : MonoBehaviour
     public float speed;
     public float stoppingDistance;
     public float positionOfPatrol;
-    public float powerOfJump=7f;
+    public float powerOfJump = 7f;
 
     private float timeBtwShots;
     public float startTimeBtwShots;
@@ -20,7 +20,7 @@ public class Terminator3000 : MonoBehaviour
     float startX;
     public Transform pointForBullet;
 
-    public bool moveRight=true;
+    public bool moveRight = true;
     bool calm = false;
     bool angry = false;
     bool strah = false;
@@ -32,7 +32,7 @@ public class Terminator3000 : MonoBehaviour
     private Transform rightHand;
 
     int playerMask;
-    float attackRange;
+    public float attackRange = 10f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -48,25 +48,38 @@ public class Terminator3000 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, attackRange, playerMask, 0, 0);
+        RaycastHit2D hit = Physics2D.Raycast(pointForBullet.position, pointForBullet.right, attackRange);
 
-        //if (transform.position.x - startX < positionOfPatrol && !angry && hit.collider == null) 
-        if (!hit.collider)
+        if (hit)
+        {
+            HeroControler hero = hit.transform.GetComponent<HeroControler>();
+            if (hero != null)
+            {
+                Debug.Log("Hero");
+                calm = false;
+                angry = true;
+                strah = false;
+            }
+        }
+
+        if (transform.position.x - startX < positionOfPatrol && !angry)
         {
             calm = true;
-        }
-        if (Vector2.Distance(transform.position, player.position) < stoppingDistance && hit.collider)
-        {
-
-            angry = true;
-            calm = false;
+            angry = false;
             strah = false;
         }
-        else if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
-        {
-            strah = true;
-            angry = false;
-        }
+        //if (Vector2.Distance(transform.position, player.position) < stoppingDistance)
+        //{
+
+        //    angry = true;
+        //    calm = false;
+        //    strah = false;
+        //}
+        //else if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
+        //{
+        //    strah = true;
+        //    angry = false;
+        //}
 
         if (calm == true)
         {
@@ -76,10 +89,10 @@ public class Terminator3000 : MonoBehaviour
         {
             Angry();
         }
-        else  if (strah == true)
-        {
-            Ochkonul();
-        }
+        //else if (strah == true)
+        //{
+        //    Ochkonul();
+        //}
 
         if (moveRight == true)
         {
@@ -89,9 +102,9 @@ public class Terminator3000 : MonoBehaviour
             }
         }
         else if (moveRight == false)
-        {           
+        {
             if (Physics2D.Linecast(transform.position, rightHand.position, 1 << LayerMask.NameToLayer("Wall")))
-            {                
+            {
                 rb.velocity = new Vector2(rb.velocity.x, powerOfJump);
             }
         }
@@ -100,7 +113,7 @@ public class Terminator3000 : MonoBehaviour
     void Calm()
     {
 
-        if(transform.position.x>startX+positionOfPatrol)
+        if (transform.position.x > startX + positionOfPatrol)
         {
             moveRight = false;
             transform.localRotation = Quaternion.Euler(0, 180, 0);
@@ -146,25 +159,26 @@ public class Terminator3000 : MonoBehaviour
         }
 
     }
-    void Ochkonul()
-    {
+    //void Ochkonul()
+    //{
 
-        transform.position = Vector2.MoveTowards(transform.position, new Vector2(startX, transform.position.y), speed * Time.deltaTime);
+    //    transform.position = Vector2.MoveTowards(transform.position, new Vector2(startX, transform.position.y), speed * Time.deltaTime);
 
-        if (transform.position.x < startX - positionOfPatrol)
-        {
-            moveRight = true;
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-        }
+    //    if (transform.position.x < startX - positionOfPatrol)
+    //    {
+    //        moveRight = true;
+    //        transform.localRotation = Quaternion.Euler(0, 0, 0);
+    //    }
 
-        if (transform.position.x > startX + positionOfPatrol)
-        {
-            moveRight = false;
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
-        }
-    }
+    //    if (transform.position.x > startX + positionOfPatrol)
+    //    {
+    //        moveRight = false;
+    //        transform.localRotation = Quaternion.Euler(0, 180, 0);
+    //    }
+    //}
     public void TakeDamage(int damage)
     {
+        angry = true;
         health -= damage;
         if (health <= 0)
         {
@@ -172,5 +186,9 @@ public class Terminator3000 : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(pointForBullet.position, new Vector3(pointForBullet.position.x + attackRange, pointForBullet.position.y, pointForBullet.position.z));
+    }
 
 }
