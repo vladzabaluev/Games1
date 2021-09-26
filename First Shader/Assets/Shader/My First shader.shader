@@ -27,8 +27,9 @@ Shader "Custom/My First shader"
             float4 _Tint;
             sampler2D _MainTex;
             sampler2D _DopTex;
+
             float4 _MainTex_ST;
-            float4 _DopTex_ST;
+
 
             struct Interpolators {
                float4 position : SV_POSITION;
@@ -51,7 +52,7 @@ Shader "Custom/My First shader"
 
 
             float4 MyFragmentProgram(Interpolators i) : SV_TARGET{
-            return  tex2D(_MainTex, i.uv) * _Tint;
+            return  tex2D(_MainTex, i.uv)*tex2D(_DopTex, i.uv)*_Tint;
 
             }
             
