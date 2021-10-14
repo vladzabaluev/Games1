@@ -21,7 +21,7 @@ public class ParamOfMaterial : MonoBehaviour
     {
         if (reactor.health > 0)
         {
-            currentHealth = 1 - reactor.health / reactor.maxHealth;
+            currentHealth = 1 - reactor.health / 50;
             nuclearMaterial.SetFloat("_CurrentColor", currentHealth);
             nuclearMaterial.SetFloat("_RipleSpeed", 5 + (15 - 5) * currentHealth);
         }
