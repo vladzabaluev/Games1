@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - HeroBullet
+  - HeroHP
   layers:
   - Default
   - TransparentFX

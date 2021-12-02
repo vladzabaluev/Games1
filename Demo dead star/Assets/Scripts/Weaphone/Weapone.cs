@@ -1,34 +1,101 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Weapone : MonoBehaviour
 {
-    public GameObject bullet;
-    public Transform firePoint;
+    public float maxDistance = 25f;
+    public int damage = 5;
+    public ParticleSystem hitEffect;
+
+    int currentPatrons;
+    public int clip;
+    int allPatrons;
+    public int maxBul;
+
+    private TMP_Text patrons;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
+        currentPatrons = clip;
+        allPatrons = maxBul;
+        //GameObject test = GameObject.Find("/MainCanvas/PatronsInfo");
+        patrons = GameObject.Find("/MainCanvas/PatronsInfo").GetComponent<TMP_Text>();
+        DisplayPatrons();
     }
-
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) 
         {
-            Instantiate(bullet, firePoint.position, Quaternion.identity); //стрельба с помощью префаба
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //стрельба рейкастом
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(transform.position,transform.forward, out hit, maxDistance))
             {
                 if (hit.transform.CompareTag("Enemy"))
                 {
-                    Debug.Log("Попал в противника");
+                    hit.transform.GetComponent<DamageSystem>().TakeDamage(damage);
+                    Instantiate(hitEffect, hit.transform.position, hit.transform.rotation);
+                    
                 }
             }
+            currentPatrons--;
+            DisplayPatrons();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Reload();
+            DisplayPatrons();
         }
 
+    }
+
+    public bool topUpPatrons(int addingPatrons)
+    {
+        if (allPatrons < maxBul)
+        {
+            if (allPatrons + addingPatrons <= maxBul)
+            {
+                allPatrons += addingPatrons;
+            }
+            else
+            {
+                allPatrons = maxBul;
+            }
+            DisplayPatrons();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+       
+       
+    }
+
+    void Reload()
+    {
+        if (currentPatrons < clip)
+        {
+            if (allPatrons < clip)
+            {
+                currentPatrons += allPatrons;
+                allPatrons = 0;
+            }
+            else
+            {
+                allPatrons -= (clip - currentPatrons);
+                currentPatrons = clip;
+            }
+        }
+    }
+
+    void DisplayPatrons()
+    {
+        patrons.text = currentPatrons + " / " + allPatrons;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawRay(transform.position, transform.forward * maxDistance);
     }
 }

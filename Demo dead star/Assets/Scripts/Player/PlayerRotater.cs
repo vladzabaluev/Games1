@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerRotater : MonoBehaviour
 {
     public float smoothTime = 0.1f;
-    Vector3 dampVel;
+    Vector3 dampVel = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {

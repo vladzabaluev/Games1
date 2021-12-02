@@ -6,19 +6,16 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 6f;
-    public float JumpForce = 50f;
-
     CharacterController controller;
-
+    Animator anim;
     Vector3 direction;
-
-
     // Start is called before the first frame update
 
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,16 +24,14 @@ public class PlayerMovement : MonoBehaviour
         float movingDirectionX = Input.GetAxisRaw("Horizontal") ;
         float movingDirectionZ = Input.GetAxisRaw("Vertical");
 
+      
         direction = new Vector3(movingDirectionX, 0, movingDirectionZ).normalized;
+        anim.SetFloat("Speed", direction.magnitude);
     }
 
     private void FixedUpdate()
     {
-        controller.Move(direction * speed*Time.fixedDeltaTime);
+        controller.Move(direction * speed * Time.fixedDeltaTime);
     }
 
-    void Jump()
-    {
-       
-    }
 }
