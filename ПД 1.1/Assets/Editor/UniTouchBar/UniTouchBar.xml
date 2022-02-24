@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UniTouchBar</name>
+    </assembly>
+    <members>
+        <member name="E:UniTouchBarManager.OnUnityWindowChanged">
+            <summary>
+            Called when window focus changed.
+            </summary>
+        </member>
+        <member name="T:UniTouchBarManager.UnityPlaymodeChanged">
+            <summary>
+            Called when playmode changed.
+            </summary>
+        </member>
+        <member name="T:UniTouchBarManager.Ready">
+            <summary>
+            Called when UniTouchBar is ready for buttons.
+            </summary>
+        </member>
+    </members>
+</doc>
