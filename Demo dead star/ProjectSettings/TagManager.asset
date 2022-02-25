@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - HeroBullet
   - HeroHP
+  - LeftDoor
+  - RightDoor
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Player
   - HeroBullet
   - Enemy
-  - 
+  - Door
   - 
   - 
   - 

@@ -13,12 +13,14 @@ public class CloseCombatEnemy : MonoBehaviour
     LayerMask _playerLayer;
     Transform _attackPoint;
     GameObject _player;
+    Animator _anim;
     // Start is called before the first frame update
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerLayer = _player.layer;
         _attackPoint = transform.GetChild(1);
+        _anim = transform.GetChild(2).GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,8 +29,10 @@ public class CloseCombatEnemy : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(_attackPoint.position, attackRange, _playerLayer);
         if (hitColliders != null)
         {
-            _player.GetComponent<PlayerHealthSystem>().TakeDamage(damage);
-            nextTimeAttack = Time.time + 1 / attackRange;
+            //_player.GetComponent<PlayerHealthSystem>().TakeDamage(damage);
+            Invoke("DelayBeforeDamage", attackPerSecond);
+            nextTimeAttack = Time.time + 1 / attackPerSecond;
+            _anim.SetBool("isAttack", true);
         }
 
     }
@@ -37,5 +41,10 @@ public class CloseCombatEnemy : MonoBehaviour
     {
         if(_attackPoint!=null)
             Gizmos.DrawWireSphere(_attackPoint.position, attackRange);
+    }
+
+    void DelayBeforeDamage()
+    {
+        _player.GetComponent<PlayerHealthSystem>().TakeDamage(damage);
     }
 }

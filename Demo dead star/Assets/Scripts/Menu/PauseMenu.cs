@@ -7,10 +7,13 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused;
     public GameObject pauseMenuUI;
+
+    GameObject _player;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -34,6 +37,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Weapone>().enabled = true;
     }
 
     void PauseGame()
@@ -41,6 +45,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Weapone>().enabled = false;
     }
 
     public void LoadMenu()
@@ -53,4 +58,5 @@ public class PauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
 }

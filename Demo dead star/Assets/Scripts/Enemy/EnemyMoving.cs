@@ -11,13 +11,15 @@ public class EnemyMoving : MonoBehaviour
     public float distanceToPlayer = 0.3f;
     RaycastHit hit;
 
-    CloseCombatEnemy combatEnemy;
+    CloseCombatEnemy _combatEnemy;
+    Animator _anim;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("/Player");
-        combatEnemy = GetComponent<CloseCombatEnemy>();
+        _combatEnemy = GetComponent<CloseCombatEnemy>();
+        _anim = transform.GetChild(2).GetChild(0).GetComponent<Animator>();
     }
 
     void Update()
@@ -31,13 +33,15 @@ public class EnemyMoving : MonoBehaviour
                 {
                     agent.isStopped = false;
                     agent.SetDestination(player.transform.position);
+                    _anim.SetBool("isAttack", false);
                 }
                 else
                 {
                     agent.isStopped = true;
-                    if (Time.time >= combatEnemy.nextTimeAttack)
+                    //_anim.SetBool("isAttack", false);
+                    if (Time.time >= _combatEnemy.nextTimeAttack)
                     {
-                        combatEnemy.Attack();
+                        _combatEnemy.Attack();
                         //combatEnemy.nextTimeAttack = Time.time + 1 / combatEnemy.attackPerSecond;
                     }
                 }

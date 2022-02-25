@@ -9,6 +9,10 @@ public class Weapone : MonoBehaviour
     public int damage = 5;
     public ParticleSystem hitEffect;
 
+    AudioSource _audioSource;
+    public AudioClip Click;
+    public AudioClip Rel;
+
     int currentPatrons;
     public int clip;
     int allPatrons;
@@ -20,8 +24,8 @@ public class Weapone : MonoBehaviour
     {
         currentPatrons = clip;
         allPatrons = maxBul;
-        //GameObject test = GameObject.Find("/MainCanvas/PatronsInfo");
         patrons = GameObject.Find("/MainCanvas/PatronsInfo").GetComponent<TMP_Text>();
+        _audioSource = GetComponent<AudioSource>();
         DisplayPatrons();
     }
     // Update is called once per frame
@@ -29,25 +33,30 @@ public class Weapone : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) 
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position,transform.forward, out hit, maxDistance))
+            if (currentPatrons > 0)
             {
-                if (hit.transform.CompareTag("Enemy"))
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
                 {
-                    hit.transform.GetComponent<DamageSystem>().TakeDamage(damage);
-                    Instantiate(hitEffect, hit.transform.position, hit.transform.rotation);
-                    
+                    if (hit.transform.CompareTag("Enemy"))
+                    {
+                        hit.transform.GetComponent<DamageSystem>().TakeDamage(damage);
+                        Instantiate(hitEffect, hit.transform.position, hit.transform.rotation);
+                        }
                 }
+                _audioSource.PlayOneShot(Click);
+                currentPatrons--;
+                DisplayPatrons();
             }
-            currentPatrons--;
-            DisplayPatrons();
+            else
+            {
+                Reload();
+            }
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             Reload();
-            DisplayPatrons();
         }
-
     }
 
     public bool topUpPatrons(int addingPatrons)
@@ -77,6 +86,7 @@ public class Weapone : MonoBehaviour
     {
         if (currentPatrons < clip)
         {
+            _audioSource.PlayOneShot(Rel);
             if (allPatrons < clip)
             {
                 currentPatrons += allPatrons;
@@ -88,6 +98,7 @@ public class Weapone : MonoBehaviour
                 currentPatrons = clip;
             }
         }
+        DisplayPatrons();
     }
 
     void DisplayPatrons()
@@ -99,3 +110,4 @@ public class Weapone : MonoBehaviour
         Gizmos.DrawRay(transform.position, transform.forward * maxDistance);
     }
 }
+
