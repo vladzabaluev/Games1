@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public float Gravity = -15.0f;
 
     public float JumpTimeout = 0.50f;
-    public float FallTimeout = 0.15f;
+    public float FreeFallTimeout = 0.15f;
+    public float JumpFreeFallTimeout = 1.4f;
 
     //Touch earth parameters
     public bool Grounded = true;
@@ -39,12 +40,15 @@ public class PlayerMovement : MonoBehaviour
     //for jump
     float _fallingVelocity;
     float _jumpTimeoutDelta;
-    float _fallTimeoutDelta;
+    float _freeFallTimeoutDelta;
     //for rotating
     float _targetRotation;
     float _turnSmoothVelocity;
     Vector3 _targetDirection;
 
+    public bool a_jump;
+    public bool a_freeFall;
+    public bool a_grounded;
     // Start is called before the first frame update
 
     private void Awake()
@@ -59,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         _jumpTimeoutDelta = JumpTimeout;
-        _fallTimeoutDelta = FallTimeout;
+        _freeFallTimeoutDelta = FreeFallTimeout;
     }
     
     // Update is called once per frame
@@ -113,10 +117,14 @@ public class PlayerMovement : MonoBehaviour
         _speed = _speed * 1000 / 1000;
     }
     void JumpAndGravity()
-    {
+    { 
         if (Grounded)
         {
-            _fallTimeoutDelta = FallTimeout;
+            //a_freeFall = false;
+            //a_jump = false;
+
+            _freeFallTimeoutDelta = FreeFallTimeout;
+
             if (_fallingVelocity < 0.0f)
             {
                 _fallingVelocity = -2f;
@@ -125,6 +133,8 @@ public class PlayerMovement : MonoBehaviour
             if (_input.jump && _jumpTimeoutDelta <= 0.0f)
             {
                 _fallingVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                //a_jump = true;
+                _freeFallTimeoutDelta = JumpFreeFallTimeout;
             }
 
             if (_jumpTimeoutDelta >= 0.0f)
@@ -136,11 +146,16 @@ public class PlayerMovement : MonoBehaviour
         {
             _jumpTimeoutDelta = JumpTimeout;
 
-            if (_fallTimeoutDelta >= 0.0f)
+            if (_freeFallTimeoutDelta >= 0.0f)
             {
-                _fallTimeoutDelta -= Time.deltaTime;
+                _freeFallTimeoutDelta -= Time.deltaTime;
             }
+            //else
+            //{
+            //    a_freeFall = true;
+            //}
 
+            //a_jump = false;
             _input.jump = false;
         }
 
@@ -149,7 +164,9 @@ public class PlayerMovement : MonoBehaviour
     void GroundCheck()
     {
         Vector3 groundCheckPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-        Grounded = Physics.CheckSphere(groundCheckPosition, GroundedRadius, GroundLayers.value);
+        Grounded = Physics.CheckSphere(groundCheckPosition, GroundedRadius, GroundLayers,QueryTriggerInteraction.Ignore);
+
+        //a_grounded = Grounded;
     }
 
     private void OnDrawGizmosSelected()

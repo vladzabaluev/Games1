@@ -15,6 +15,7 @@ public class AnimationController : MonoBehaviour
     private int _IDFreeFall;
 
     private float _maxSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,20 +31,10 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _anim.SetFloat(_IDSpeed, _playerController.velocity.magnitude / _maxSpeed);
-        if (_playerMovement.Grounded)
-        {
-            _anim.SetBool(_IDJump, false);
-            _anim.SetBool(_IDFreeFall, false);
-        }
-        else
-        {
-            if(_input.jump)
-            {
-                _anim.SetBool(_IDJump, true);
-            }
-           
-        }
+        Vector2 moveSpeed = new Vector2(_playerController.velocity.x, _playerController.velocity.z);
+        _anim.SetFloat(_IDSpeed, moveSpeed.magnitude / _maxSpeed);
+
+        //GetInfoFromMovement();
     }
 
 
@@ -53,5 +44,12 @@ public class AnimationController : MonoBehaviour
         _IDJump = Animator.StringToHash("Jump");
         _IDGrounded = Animator.StringToHash("Grounded");
         _IDFreeFall = Animator.StringToHash("Free fall");
+    }
+
+    void GetInfoFromMovement()
+    {
+        _anim.SetBool(_IDGrounded, _playerMovement.Grounded);
+        _anim.SetBool(_IDFreeFall, _playerMovement.a_freeFall);
+        _anim.SetBool(_IDJump, _playerMovement.a_jump);
     }
 }

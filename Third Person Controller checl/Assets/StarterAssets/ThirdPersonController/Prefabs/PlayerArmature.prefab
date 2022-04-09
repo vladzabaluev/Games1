@@ -1162,7 +1162,6 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4416926081852918490}
-        m_TargetAssemblyTypeName: 
         m_MethodName: InputMove
         m_Mode: 0
         m_Arguments:
@@ -1178,7 +1177,6 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4416926081852918490}
-        m_TargetAssemblyTypeName: 
         m_MethodName: InputLook
         m_Mode: 0
         m_Arguments:
@@ -1194,7 +1192,6 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4416926081852918490}
-        m_TargetAssemblyTypeName: 
         m_MethodName: InputJump
         m_Mode: 0
         m_Arguments:
@@ -1210,7 +1207,6 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4416926081852918490}
-        m_TargetAssemblyTypeName: 
         m_MethodName: InputSprint
         m_Mode: 0
         m_Arguments:
@@ -2177,7 +2173,6 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
