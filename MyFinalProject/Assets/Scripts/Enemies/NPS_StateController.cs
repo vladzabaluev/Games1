@@ -13,10 +13,15 @@ public class NPS_StateController : MonoBehaviour
 
     public NavMeshAgent npsNavMesh;
 
+    public float aggrRadius = 10;
+
+    public Transform target;
+
     // Start is called before the first frame update
     private void Start()
     {
         npsNavMesh = GetComponent<NavMeshAgent>();
+        target = PlayerManager.instanse.player.transform;
     }
 
     private void OnEnable()
@@ -28,5 +33,11 @@ public class NPS_StateController : MonoBehaviour
     private void Update()
     {
         currentState = currentState.ChangeState(this);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, aggrRadius);
     }
 }

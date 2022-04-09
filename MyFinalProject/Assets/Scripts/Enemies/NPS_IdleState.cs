@@ -5,25 +5,31 @@ using UnityEngine.AI;
 
 public class NPS_IdleState : MonoBehaviour, INPS_State
 {
-    private NavMeshAgent npsNavMesh;
-
     public Transform patrolArea;
     private float minX, minZ, maxX, maxZ;
 
     [SerializeField]
     private Vector3 targetSpot;
 
-    public float Offset;
+    public float Offset = 2.5f;
 
     private float waitTime;
     public float startWaitTime = 2;
 
+    public bool ShootedByPlayer = false;
     // Start is called before the first frame update
 
     public INPS_State ChangeState(NPS_StateController npc)
     {
         PatrolArea(npc);
-        return npc.idle;
+        if (PlayerApproached(npc) || TakeDamage(npc))
+        {
+            return npc.aggressive;
+        }
+        else
+        {
+            return npc.idle;
+        }
     }
 
     private void Start()
@@ -77,6 +83,24 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
             {
                 waitTime -= Time.deltaTime;
             }
+        }
+    }
+
+    private bool TakeDamage(NPS_StateController npc)
+    {
+        return ShootedByPlayer;
+    }
+
+    private bool PlayerApproached(NPS_StateController npc)
+    {
+        float distance = Vector3.Distance(transform.position, npc.target.position);
+        if (distance <= npc.aggrRadius)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
