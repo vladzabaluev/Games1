@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9676c1cc1f71841805b05cf2c4f39b, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  Damage: 10
+  Damage: 14
   shootingRange: 7
   bulletPerSecond: 0
   "bulIn\u0421lip": 10
   allBullets: 50
-  currentBulletInClip: 0
-  currentAllBullet: 50
+  currentBulletInClip: 3
+  currentAllBullet: 40
   AutoShooting: 0
   shootingType: 0
   weaphoneColor: {r: 0.06454251, g: 0.12718119, b: 0.9245283, a: 0.972549}

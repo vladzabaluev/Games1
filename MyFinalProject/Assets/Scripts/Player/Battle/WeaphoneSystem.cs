@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 
 public class WeaphoneSystem : MonoBehaviour
 {
-    //public List<Weaphone> weaphones;
     public Weaphone[] weaphones;
 
     private float indexCurWeaphone = 0;
     public Weaphone currentWeaphone;
+    public GameObject shootingPoint;
 
     private PlayerInputActions p_Input;
     private InputAction i_switchWeaphone;
@@ -19,8 +19,6 @@ public class WeaphoneSystem : MonoBehaviour
     private InputAction i_switchToSecond;
 
     private float nextTimeShot = 0;
-
-    public UnityEvent<Weaphone> e_ChangeText;
 
     // Start is called before the first frame update
     private void Awake()
@@ -36,7 +34,7 @@ public class WeaphoneSystem : MonoBehaviour
         }
         currentWeaphone = weaphones[(int)indexCurWeaphone];
         GetComponentInChildren<MeshRenderer>().material.color = currentWeaphone.weaphoneColor;
-        WeaphoneTextUpdate();
+        GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
     }
 
     private void OnEnable()
@@ -101,7 +99,7 @@ public class WeaphoneSystem : MonoBehaviour
         }
         currentWeaphone = weaphones[(int)indexCurWeaphone];
         GetComponentInChildren<MeshRenderer>().material.color = currentWeaphone.weaphoneColor;
-        WeaphoneTextUpdate();
+        GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
     }
 
     private void SwitchFirst(InputAction.CallbackContext obj)
@@ -110,7 +108,7 @@ public class WeaphoneSystem : MonoBehaviour
         {
             currentWeaphone = weaphones[0];
             GetComponentInChildren<MeshRenderer>().material.color = currentWeaphone.weaphoneColor;
-            WeaphoneTextUpdate();
+            GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
         }
     }
 
@@ -120,7 +118,7 @@ public class WeaphoneSystem : MonoBehaviour
         {
             currentWeaphone = weaphones[1];
             GetComponentInChildren<MeshRenderer>().material.color = currentWeaphone.weaphoneColor;
-            WeaphoneTextUpdate();
+            GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
         }
     }
 
@@ -137,11 +135,19 @@ public class WeaphoneSystem : MonoBehaviour
             {
                 if (currentWeaphone.bulletPerSecond != 0) nextTimeShot = Time.time + 1 / currentWeaphone.bulletPerSecond;
                 currentWeaphone.currentBulletInClip--;
-                if (Physics.Raycast(transform.position, transform.forward, out hittedThings))
+                if (Physics.Raycast(shootingPoint.transform.position, shootingPoint.transform.forward, out hittedThings))
                 {
                     Debug.Log(hittedThings.transform.name);
+                    if (hittedThings.transform.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
+                    {
+                        enemyStats.TakeDamage(currentWeaphone.Damage);
+                        //Сделать чтобы не менялась переменная, а что-то адекватное(смотри NPS_Idle)
+                        //подумать над информацией хранящейся просто в нпс_стейт, возможно,
+                        //переменной ставить значение стоппингдистанс
+                        enemyStats.transform.GetComponent<NPS_IdleState>().ShootedByPlayer = true;
+                    }
                 }
-                WeaphoneTextUpdate();
+                GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
             }
         }
     }
@@ -168,16 +174,11 @@ public class WeaphoneSystem : MonoBehaviour
             }
             Debug.Log(currentWeaphone.currentAllBullet);
         }
-        WeaphoneTextUpdate();
+        GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawRay(transform.position, transform.forward * currentWeaphone.shootingRange);
-    }
-
-    private void WeaphoneTextUpdate()
-    {
-        e_ChangeText.Invoke(currentWeaphone);
+        Gizmos.DrawRay(shootingPoint.transform.position, shootingPoint.transform.forward * 100);
     }
 }
