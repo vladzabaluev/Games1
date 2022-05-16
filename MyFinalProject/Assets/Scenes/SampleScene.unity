@@ -552,6 +552,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5798820265903391539}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &447864188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447864187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872f02e9367cd11499a6623bb4a12b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaphoneParams: {fileID: 11400000, guid: f4fffac36a1e9fc4e8e24c5257746280, type: 2}
 --- !u!1001 &602503258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1661,6 +1674,7 @@ GameObject:
   - component: {fileID: 1199111058}
   - component: {fileID: 1199111057}
   - component: {fileID: 1199111056}
+  - component: {fileID: 1199111059}
   m_Layer: 0
   m_Name: TestWeaphone
   m_TagString: Untagged
@@ -1731,6 +1745,19 @@ Transform:
   m_Father: {fileID: 330585546}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1199111059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199111055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872f02e9367cd11499a6623bb4a12b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaphoneParams: {fileID: 11400000, guid: 0ad1d0d8f17b140418920d5b5a472a8f, type: 2}
 --- !u!1 &1199986027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,6 +2178,9 @@ MonoBehaviour:
   weaphones:
   - {fileID: 447864187}
   - {fileID: 1199111055}
+  wStates:
+  - {fileID: 11400000, guid: f4fffac36a1e9fc4e8e24c5257746280, type: 2}
+  - {fileID: 11400000, guid: 0ad1d0d8f17b140418920d5b5a472a8f, type: 2}
   currentWeaphone: {fileID: 0}
   shootingPoint: {fileID: 1241765033}
 --- !u!114 &1449477728
@@ -2260,7 +2290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1590181776
 Transform:
   m_ObjectHideFlags: 0
