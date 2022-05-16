@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 
 public class WeaphoneSystem : MonoBehaviour
 {
-    public Weaphone[] weaphones;
+    public Weaphone[] weaphonesStats;
 
     private float indexCurWeaphone = 0;
-    public Weaphone currentWeaphone;
+    public Weaphone currentWeaphoneStats;
     public GameObject shootingPoint;
 
     private PlayerInputActions p_Input;
@@ -28,13 +28,13 @@ public class WeaphoneSystem : MonoBehaviour
 
     private void Start()
     {
-        foreach (var weap in weaphones)
+        foreach (var weap in weaphonesStats)
         {
             weap.StartLVL();
         }
-        currentWeaphone = weaphones[(int)indexCurWeaphone];
-        GetComponentInChildren<MeshRenderer>().material.color = currentWeaphone.weaphoneColor;
-        GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
+        currentWeaphoneStats = weaphonesStats[(int)indexCurWeaphone];
+        GetComponentInChildren<MeshRenderer>().material.color = currentWeaphoneStats.weaphoneColor;
+        GlobalEventManager.SendBulletAmountChanged(currentWeaphoneStats);
     }
 
     private void OnEnable()
@@ -68,7 +68,7 @@ public class WeaphoneSystem : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (currentWeaphone.shootingType == Weaphone.ShootingType.Hold)
+        if (currentWeaphoneStats.shootingType == Weaphone.ShootingType.Hold)
         {
             if (i_shoot.inProgress)
             {
@@ -91,41 +91,41 @@ public class WeaphoneSystem : MonoBehaviour
         indexCurWeaphone += wheelInputValue;
         if (indexCurWeaphone < 0)
         {
-            indexCurWeaphone = weaphones.Length - 1;
+            indexCurWeaphone = weaphonesStats.Length - 1;
         }
-        if (indexCurWeaphone > weaphones.Length - 1)
+        if (indexCurWeaphone > weaphonesStats.Length - 1)
         {
             indexCurWeaphone = 0;
         }
-        currentWeaphone = weaphones[(int)indexCurWeaphone];
-        GetComponentInChildren<MeshRenderer>().material.color = currentWeaphone.weaphoneColor;
-        GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
+        currentWeaphoneStats = weaphonesStats[(int)indexCurWeaphone];
+        GetComponentInChildren<MeshRenderer>().material.color = currentWeaphoneStats.weaphoneColor;
+        GlobalEventManager.SendBulletAmountChanged(currentWeaphoneStats);
     }
 
     private void SwitchFirst(InputAction.CallbackContext obj)
     {
-        if (currentWeaphone != weaphones[0])
+        if (currentWeaphoneStats != weaphonesStats[0])
         {
-            currentWeaphone = weaphones[0];
-            GetComponentInChildren<MeshRenderer>().material.color = currentWeaphone.weaphoneColor;
-            GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
+            currentWeaphoneStats = weaphonesStats[0];
+            GetComponentInChildren<MeshRenderer>().material.color = currentWeaphoneStats.weaphoneColor;
+            GlobalEventManager.SendBulletAmountChanged(currentWeaphoneStats);
         }
     }
 
     private void SwitchSecond(InputAction.CallbackContext obj)
     {
-        if (currentWeaphone != weaphones[1])
+        if (currentWeaphoneStats != weaphonesStats[1])
         {
-            currentWeaphone = weaphones[1];
-            GetComponentInChildren<MeshRenderer>().material.color = currentWeaphone.weaphoneColor;
-            GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
+            currentWeaphoneStats = weaphonesStats[1];
+            GetComponentInChildren<MeshRenderer>().material.color = currentWeaphoneStats.weaphoneColor;
+            GlobalEventManager.SendBulletAmountChanged(currentWeaphoneStats);
         }
     }
 
     private void Shoot()
     {
         RaycastHit hittedThings;
-        if (currentWeaphone.currentBulletInClip <= 0)
+        if (currentWeaphoneStats.currentBulletInClip <= 0)
         {
             Reload();
         }
@@ -133,21 +133,21 @@ public class WeaphoneSystem : MonoBehaviour
         {
             if (Time.time >= nextTimeShot)
             {
-                if (currentWeaphone.bulletPerSecond != 0) nextTimeShot = Time.time + 1 / currentWeaphone.bulletPerSecond;
-                currentWeaphone.currentBulletInClip--;
+                if (currentWeaphoneStats.bulletPerSecond != 0) nextTimeShot = Time.time + 1 / currentWeaphoneStats.bulletPerSecond;
+                currentWeaphoneStats.currentBulletInClip--;
                 if (Physics.Raycast(shootingPoint.transform.position, shootingPoint.transform.forward, out hittedThings))
                 {
                     Debug.Log(hittedThings.transform.name);
                     if (hittedThings.transform.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
                     {
-                        enemyStats.TakeDamage(currentWeaphone.Damage);
+                        enemyStats.TakeDamage(currentWeaphoneStats.Damage);
                         //Сделать чтобы не менялась переменная, а что-то адекватное(смотри NPS_Idle)
                         //подумать над информацией хранящейся просто в нпс_стейт, возможно,
                         //переменной ставить значение стоппингдистанс
                         enemyStats.transform.GetComponent<NPS_IdleState>().ShootedByPlayer = true;
                     }
                 }
-                GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
+                GlobalEventManager.SendBulletAmountChanged(currentWeaphoneStats);
             }
         }
     }
@@ -159,22 +159,22 @@ public class WeaphoneSystem : MonoBehaviour
 
     private void Reload()
     {
-        if (currentWeaphone.currentAllBullet > 0)
+        if (currentWeaphoneStats.currentAllBullet > 0)
         {
-            int bulDiffrence = currentWeaphone.bulInСlip - currentWeaphone.currentBulletInClip;
-            if (bulDiffrence > currentWeaphone.currentAllBullet)
+            int bulDiffrence = currentWeaphoneStats.bulInСlip - currentWeaphoneStats.currentBulletInClip;
+            if (bulDiffrence > currentWeaphoneStats.currentAllBullet)
             {
-                currentWeaphone.currentBulletInClip += currentWeaphone.currentAllBullet;
-                currentWeaphone.currentAllBullet = 0;
+                currentWeaphoneStats.currentBulletInClip += currentWeaphoneStats.currentAllBullet;
+                currentWeaphoneStats.currentAllBullet = 0;
             }
             else
             {
-                currentWeaphone.currentBulletInClip = currentWeaphone.bulInСlip;
-                currentWeaphone.currentAllBullet -= bulDiffrence;
+                currentWeaphoneStats.currentBulletInClip = currentWeaphoneStats.bulInСlip;
+                currentWeaphoneStats.currentAllBullet -= bulDiffrence;
             }
-            Debug.Log(currentWeaphone.currentAllBullet);
+            Debug.Log(currentWeaphoneStats.currentAllBullet);
         }
-        GlobalEventManager.SendBulletAmountChanged(currentWeaphone);
+        GlobalEventManager.SendBulletAmountChanged(currentWeaphoneStats);
     }
 
     private void OnDrawGizmos()
