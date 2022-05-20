@@ -2636,7 +2636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1199986028
 Transform:
   m_ObjectHideFlags: 0
@@ -3456,7 +3456,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5e03a9e0df9b4f94b8d676b48872637a, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -3836,7 +3836,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 824842771}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: UnPauseGame
+        m_MethodName: SendGameContinue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -38,6 +38,20 @@ public class MainWeaphoneSystem : MonoBehaviour
     {
         p_Input = new PlayerInputActions();
         anim = GetComponent<Animator>();
+
+        GlobalEventManager.OnGamePaused.AddListener(DisablePlayerActionMap);
+        GlobalEventManager.OnPlayerDead.AddListener(DisablePlayerActionMap);
+        GlobalEventManager.OnGameUnpaused.AddListener(EnablePlayerActionMap);
+    }
+
+    private void DisablePlayerActionMap()
+    {
+        p_Input.Player.Disable();
+    }
+
+    private void EnablePlayerActionMap()
+    {
+        p_Input.Player.Enable();
     }
 
     private void Start()

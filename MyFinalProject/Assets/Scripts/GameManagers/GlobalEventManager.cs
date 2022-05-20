@@ -11,16 +11,6 @@ public class GlobalEventManager : MonoBehaviour
 
     public static GlobalEventManager instanse;
 
-    //private void Awake()
-    //{
-    //    SceneManager.sceneLoaded += OnLVLLoad;
-    //}
-
-    //private void OnLVLLoad(Scene arg0, LoadSceneMode arg1)
-    //{
-    //    instanse = this;
-    //}
-
     private void Awake()
     {
         instanse = this;
@@ -35,6 +25,7 @@ public class GlobalEventManager : MonoBehaviour
     public static readonly UnityEvent<Weaphone> OnBulletAmountChanged = new UnityEvent<Weaphone>();
     public static readonly UnityEvent OnPlayerDead = new UnityEvent();
     public static readonly UnityEvent OnGamePaused = new UnityEvent();
+    public static readonly UnityEvent OnGameUnpaused = new UnityEvent();
 
     public static void SendPlayerDamaged(int currentHealth) => OnPlayerDamaged.Invoke(currentHealth);
 
@@ -43,4 +34,6 @@ public class GlobalEventManager : MonoBehaviour
     public static void SendPlayerDead() => OnPlayerDead.Invoke();
 
     public static void SendGamePaused() => OnGamePaused.Invoke();
+
+    public static void SendGameUnpaused() => OnGameUnpaused.Invoke();
 }

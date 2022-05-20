@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float Speed = 10f;
 
-    public float jumpHeight=10;
+    public float jumpHeight = 10;
     public float gravityConst = -9.81f;
 
     public float groundCheckRadius = 1.2f;
@@ -27,7 +27,22 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         p_Input = new PlayerInputActions();
+
+        GlobalEventManager.OnGamePaused.AddListener(DisablePlayerActionMap);
+        GlobalEventManager.OnPlayerDead.AddListener(DisablePlayerActionMap);
+        GlobalEventManager.OnGameUnpaused.AddListener(EnablePlayerActionMap);
     }
+
+    private void DisablePlayerActionMap()
+    {
+        p_Input.Player.Disable();
+    }
+
+    private void EnablePlayerActionMap()
+    {
+        p_Input.Player.Enable();
+    }
+
     private void OnEnable()
     {
         i_move = p_Input.Player.Move;
@@ -44,19 +59,19 @@ public class PlayerMovement : MonoBehaviour
         i_move.Disable();
         i_jump.Disable();
     }
-    void Start()
+
+    private void Start()
     {
         p_Controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Move();
         GroundCheck();
         Gravity();
     }
-
 
     private void DoJump(InputAction.CallbackContext obj)
     {
@@ -82,7 +97,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 fallVelocity = -2f;
             }
-
         }
         else
         {
@@ -109,6 +123,4 @@ public class PlayerMovement : MonoBehaviour
         Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - groundCheckOffset, transform.position.z);
         Gizmos.DrawSphere(spherePosition, groundCheckRadius);
     }
-
-   
 }
