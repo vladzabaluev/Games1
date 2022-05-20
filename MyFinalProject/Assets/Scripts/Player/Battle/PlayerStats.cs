@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : CharacterStats
 {
@@ -13,5 +14,11 @@ public class PlayerStats : CharacterStats
     {
         base.TakeDamage(damage);
         GlobalEventManager.SendPlayerDamaged(currentHealth);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        GlobalEventManager.SendPlayerDead();
     }
 }

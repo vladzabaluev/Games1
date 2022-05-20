@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,19 +15,29 @@ public class MainWeaphoneSystem : MonoBehaviour
     private Weaphone curWStats;
     public GameObject shootingPoint;
 
+    private Cinemachine.CinemachineVirtualCamera _currentVirtualCamera;
+    private Animator anim;
+
     private PlayerInputActions p_Input;
     private InputAction i_switchWeaphone;
     private InputAction i_reload;
     private InputAction i_shoot;
+    private InputAction i_zoom;
     private InputAction i_switchToFirst;
     private InputAction i_switchToSecond;
 
     private float nextTimeShot = 0;
 
+    [SerializeField]
+    private float zoomingFOV;
+
+    private float startFOV;
+
     // Start is called before the first frame update
     private void Awake()
     {
         p_Input = new PlayerInputActions();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -49,6 +60,9 @@ public class MainWeaphoneSystem : MonoBehaviour
         i_shoot = p_Input.Player.Attack;
         i_switchToFirst = p_Input.Player.SwitchToFirst;
         i_switchToSecond = p_Input.Player.SwitchToSecond;
+        i_zoom = p_Input.Player.Zoom;
+        i_zoom.started += ZoomIn;
+        i_zoom.canceled += ZoomOut;
         i_switchWeaphone.performed += OnWeaphoneSwitch;
         i_reload.performed += OnReload;
         i_switchToFirst.performed += SwitchFirst;
@@ -59,6 +73,7 @@ public class MainWeaphoneSystem : MonoBehaviour
         i_switchWeaphone.Enable();
         i_reload.Enable();
         i_shoot.Enable();
+        i_zoom.Enable();
     }
 
     private void OnDisable()
@@ -68,6 +83,7 @@ public class MainWeaphoneSystem : MonoBehaviour
         i_switchWeaphone.Disable();
         i_reload.Disable();
         i_shoot.Disable();
+        i_zoom.Disable();
     }
 
     // Update is called once per frame
@@ -192,6 +208,27 @@ public class MainWeaphoneSystem : MonoBehaviour
             Debug.Log(curWStats.currentAllBullet);
         }
         GlobalEventManager.SendBulletAmountChanged(curWStats);
+    }
+
+    private void ZoomIn(InputAction.CallbackContext obj)
+    {
+        FindCurrentVirtualCamera();
+        anim.SetBool("ZoomIn", true);
+        startFOV = _currentVirtualCamera.m_Lens.FieldOfView;
+        _currentVirtualCamera.m_Lens.FieldOfView = zoomingFOV;
+    }
+
+    private void ZoomOut(InputAction.CallbackContext obj)
+    {
+        FindCurrentVirtualCamera();
+        anim.SetBool("ZoomIn", false);
+        _currentVirtualCamera.m_Lens.FieldOfView = startFOV;
+    }
+
+    private void FindCurrentVirtualCamera()
+    {
+        _currentVirtualCamera = Camera.main.GetComponent<CinemachineBrain>()
+            .ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineVirtualCamera>();
     }
 
     private void OnDrawGizmos()

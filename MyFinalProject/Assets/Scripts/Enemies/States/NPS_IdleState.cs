@@ -14,21 +14,22 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
     public float Offset = 2.5f;
 
     private float waitTime;
-    public float startWaitTime = 2;
+    public float startWaitTime = 5;
 
     public bool ShootedByPlayer = false;
     // Start is called before the first frame update
 
-    public INPS_State ChangeState(NPS_StateController npc)
+    public INPS_State ChangeState(NPS_StateController nps)
     {
-        PatrolArea(npc);
-        if (PlayerApproached(npc) || TakeDamage(npc))
+        PatrolArea(nps);
+        if (PlayerApproached(nps) || TakeDamage(nps))
         {
-            return npc.aggressive;
+            nps.anim.SetBool("isAggressive", true);
+            return nps.aggressive;
         }
         else
         {
-            return npc.idle;
+            return nps.idle;
         }
     }
 
@@ -41,6 +42,7 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
         maxZ = patrolArea.position.z + patrolArea.localScale.z / 2;
 
         FindNewPoint();
+        waitTime = startWaitTime;
     }
 
     private void FindNewPoint()
@@ -50,14 +52,17 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
         targetSpot = new Vector3(randomX, transform.position.y, randomZ);
     }
 
-    private void PatrolArea(NPS_StateController npc)
+    private void PatrolArea(NPS_StateController nps)
     {
-        npc.npsNavMesh.SetDestination(targetSpot);
+        nps.npsNavMesh.SetDestination(targetSpot);
+        nps.anim.SetBool("isMoving", true);
         if (Vector3.Distance(transform.position, targetSpot) < Offset)
         {
+            nps.anim.SetBool("isMoving", false);
             if (waitTime <= 0)
             {
                 FindNewPoint();
+
                 waitTime = startWaitTime;
             }
             else
@@ -67,16 +72,16 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
         }
     }
 
-    private bool TakeDamage(NPS_StateController npc)
+    private bool TakeDamage(NPS_StateController nps)
     {
         return ShootedByPlayer;
         //сделать сообщение всем в области, область=слушатель?? а потом гаврики=слушатели
     }
 
-    private bool PlayerApproached(NPS_StateController npc)
+    private bool PlayerApproached(NPS_StateController nps)
     {
-        float distance = Vector3.Distance(transform.position, npc.target.position);
-        if (distance <= npc.aggrRadius)
+        float distance = Vector3.Distance(transform.position, nps.target.position);
+        if (distance <= nps.aggrRadius)
         {
             return true;
         }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface INPS_State
 {
-    INPS_State ChangeState(NPS_StateController nps);
+    public INPS_State ChangeState(NPS_StateController nps);
 }

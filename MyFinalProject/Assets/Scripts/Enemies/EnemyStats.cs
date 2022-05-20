@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class EnemyStats : CharacterStats
 {
-    // Start is called before the first frame update
-    private void Start()
+    public override void Die()
     {
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
+        base.Die();
+        Destroy(gameObject);
     }
 }

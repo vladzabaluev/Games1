@@ -5,14 +5,16 @@ using UnityEngine;
 public class CoursorController : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
+        SetCursor(false);
     }
+
     private void OnApplicationFocus(bool focus)
     {
         SetCursor(!focus);
     }
+
     public static void SetCursor(bool mode)
     {
         if (mode)
@@ -26,5 +28,4 @@ public class CoursorController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
-
 }
