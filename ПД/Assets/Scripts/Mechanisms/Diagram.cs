@@ -6,6 +6,7 @@ public class Diagram : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     public CameraRotater cameraRotater;
+
     // Start is called before the first frame update
     private void OnEnable()
     {

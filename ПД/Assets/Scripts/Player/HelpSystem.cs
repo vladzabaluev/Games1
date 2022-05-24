@@ -9,6 +9,7 @@ public class HelpSystem : MonoBehaviour
     public float rayDistance = 5f;
 
     [SerializeField] private LayerMask _interact;
+
     //public TextMeshPro helpText;
     public TMP_Text helpText_UI;
 
@@ -21,12 +22,13 @@ public class HelpSystem : MonoBehaviour
     {
         MachineDiagram.SetActive(false);
     }
-    void Update()
+
+    private void Update()
     {
         RaycastHit hit;
         if (Physics.Raycast(aim.transform.position, aim.transform.forward, out hit, rayDistance, _interact))
         {
-            if (hit.transform.CompareTag("Help")) 
+            if (hit.transform.CompareTag("Help"))
             {
                 helpText_UI.gameObject.SetActive(true);
                 helpText_UI.SetText(hit.transform.GetComponent<HelpText>().helpTex);
@@ -35,7 +37,7 @@ public class HelpSystem : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    MachineDiagram.SetActive(true);                  
+                    MachineDiagram.SetActive(true);
                 }
                 if (Input.GetKeyDown(KeyCode.Escape) && MachineDiagram.activeSelf)
                 {
@@ -47,12 +49,13 @@ public class HelpSystem : MonoBehaviour
         {
             helpText_UI.gameObject.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.E)) 
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Interaction();
         }
     }
-    private void Interaction() 
+
+    private void Interaction()
     {
         RaycastHit hit;
         if (Physics.Raycast(aim.transform.position, aim.transform.forward, out hit, rayDistance, _interact))
@@ -63,6 +66,7 @@ public class HelpSystem : MonoBehaviour
             }
         }
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;

@@ -5,23 +5,24 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 15;
-    CharacterController playerController;
+    private CharacterController playerController;
+
     // Start is called before the first frame update
     private bool _isActive = true;
 
-
-    public void SetMode(bool mode) 
+    public void SetMode(bool mode)
     {
         _isActive = mode;
     }
-    void Start()
+
+    private void Start()
     {
         playerController = GetComponent<CharacterController>();
         SetMode(true);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (_isActive)
         {
