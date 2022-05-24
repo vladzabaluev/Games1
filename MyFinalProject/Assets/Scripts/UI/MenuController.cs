@@ -15,6 +15,8 @@ public class MenuController : MonoBehaviour
 
     private bool GameIsPaused = false;
 
+    private GameObject currentMenu;
+
     private void Awake()
     {
         GlobalEventManager.OnPlayerDead.AddListener(OnPlayerDead);
@@ -40,15 +42,17 @@ public class MenuController : MonoBehaviour
 
     private void PauseControl(InputAction.CallbackContext obj)
     {
-        Debug.Log(GameIsPaused);
-        if (!GameIsPaused)
+        if (currentMenu != DeathMenu)
         {
-            GameIsPaused = true;
-            GlobalEventManager.SendGamePaused();
-        }
-        else
-        {
-            SendGameContinue();
+            if (!GameIsPaused)
+            {
+                GameIsPaused = true;
+                GlobalEventManager.SendGamePaused();
+            }
+            else
+            {
+                SendGameContinue();
+            }
         }
     }
 
@@ -57,7 +61,7 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 0;
         CoursorController.SetCursor(true);
         PauseMenu.SetActive(true);
-        //убрать ввод
+        currentMenu = PauseMenu;
     }
 
     private void UnpauseGame()
@@ -65,7 +69,7 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 1;
         CoursorController.SetCursor(false);
         PauseMenu.SetActive(false);
-        //вернуть ввод
+        currentMenu = null;
     }
 
     public void SendGameContinue()
@@ -77,12 +81,23 @@ public class MenuController : MonoBehaviour
     private void OnPlayerDead()
     {
         DeathMenu.SetActive(true);
-        // Time.timeScale = 0;
+        currentMenu = DeathMenu;
+        Time.timeScale = 0;
         CoursorController.SetCursor(true);
     }
 
     public void RestartLVL()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OpenMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void OpenSettings()
+    {
+        SceneManager.LoadScene(1);
     }
 }

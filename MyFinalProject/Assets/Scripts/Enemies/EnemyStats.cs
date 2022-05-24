@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class EnemyStats : CharacterStats
 {
+    public ParticleSystem DeadEffect;
+    public ParticleSystem DamageEffect;
+
+    public Transform deadEfPosition;
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        DamageEffect.Play();
+    }
+
     public override void Die()
     {
         base.Die();
+        Instantiate(DeadEffect, deadEfPosition.position, Quaternion.identity);
+        DeadEffect.Play();
         Destroy(gameObject);
     }
 }

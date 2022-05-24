@@ -32,6 +32,7 @@ public class MainWeaphoneSystem : MonoBehaviour
     private float zoomingFOV;
 
     private float startFOV;
+    private float? targetFOV;
 
     // Start is called before the first frame update
     private void Awake()
@@ -76,6 +77,7 @@ public class MainWeaphoneSystem : MonoBehaviour
         i_switchToSecond = p_Input.Player.SwitchToSecond;
         i_zoom = p_Input.Player.Zoom;
         i_zoom.started += ZoomIn;
+
         i_zoom.canceled += ZoomOut;
         i_switchWeaphone.performed += OnWeaphoneSwitch;
         i_reload.performed += OnReload;
@@ -117,6 +119,8 @@ public class MainWeaphoneSystem : MonoBehaviour
                 Shoot();
             }
         }
+        if (targetFOV != null)
+            ZoomUpdater(targetFOV.Value);
     }
 
     public void OnWeaphoneSwitch(InputAction.CallbackContext callbackContext)
@@ -229,14 +233,21 @@ public class MainWeaphoneSystem : MonoBehaviour
         FindCurrentVirtualCamera();
         anim.SetBool("ZoomIn", true);
         startFOV = _currentVirtualCamera.m_Lens.FieldOfView;
-        _currentVirtualCamera.m_Lens.FieldOfView = zoomingFOV;
+        targetFOV = zoomingFOV;
+        //_currentVirtualCamera.m_Lens.FieldOfView = zoomingFOV;
     }
 
     private void ZoomOut(InputAction.CallbackContext obj)
     {
-        FindCurrentVirtualCamera();
         anim.SetBool("ZoomIn", false);
-        _currentVirtualCamera.m_Lens.FieldOfView = startFOV;
+        targetFOV = startFOV;
+        //_currentVirtualCamera.m_Lens.FieldOfView = startFOV;
+    }
+
+    private void ZoomUpdater(float targetZoom)
+    {
+        float speed = 10;
+        _currentVirtualCamera.m_Lens.FieldOfView = Mathf.Lerp(_currentVirtualCamera.m_Lens.FieldOfView, targetZoom, speed * Time.deltaTime);
     }
 
     private void FindCurrentVirtualCamera()
