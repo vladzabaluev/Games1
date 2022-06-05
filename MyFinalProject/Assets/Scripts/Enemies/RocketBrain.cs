@@ -8,9 +8,11 @@ public class RocketBrain : MonoBehaviour
     public ParticleSystem BOOM_Effect;
     public float LifeTime = 2;
 
+    public float boomOffset;
     private Rigidbody rb;
 
     public int Damage = 10;
+    private Vector3 boomPoint;
 
     // Start is called before the first frame update
     private void Start()
@@ -31,24 +33,21 @@ public class RocketBrain : MonoBehaviour
         {
             GlobalEventManager.instanse.player.GetComponent<PlayerStats>().TakeDamage(Damage);
         }
-        if (!other.CompareTag("Shooter"))
-            StartCoroutine(DestroyRocket());
+        //if (!other.CompareTag("Shooter"))
+        DestroyRocket();
         //уничтожить ракету с проверкой если попало в героя
     }
 
     private IEnumerator DeadRocket(float timeBeforeBoom) //убить ракету потому шо долго живет
     {
-        Debug.Log("0");
         yield return new WaitForSeconds(timeBeforeBoom);
-        Debug.Log("2");
-        StartCoroutine(DestroyRocket());
+        DestroyRocket();
     }
 
-    private IEnumerator DestroyRocket()
+    private void DestroyRocket()
     {
-        //off model
-        //play destroy anim
-        yield return new WaitForSeconds(BOOM_Effect.main.duration); //wait until anim dont end
+        boomPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z - boomOffset);
+        Instantiate(BOOM_Effect, boomPoint, Quaternion.identity, null);
         Destroy(gameObject);
     }
 }

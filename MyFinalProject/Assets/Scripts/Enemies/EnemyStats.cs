@@ -18,8 +18,7 @@ public class EnemyStats : CharacterStats
     public override void Die()
     {
         base.Die();
-        Instantiate(DeadEffect, deadEfPosition.position, Quaternion.identity);
-        DeadEffect.Play();
+        Instantiate(DeadEffect, deadEfPosition.position, Quaternion.Euler(-90, 0, 0), null);
         Destroy(gameObject);
     }
 }
