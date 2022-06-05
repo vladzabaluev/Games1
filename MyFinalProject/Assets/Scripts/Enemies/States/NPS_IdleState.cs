@@ -19,17 +19,17 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
     public bool ShootedByPlayer = false;
     // Start is called before the first frame update
 
-    public INPS_State ChangeState(NPS_StateController nps)
+    public INPS_State ChangeState(NPS_StateController NPC)
     {
-        PatrolArea(nps);
-        if (PlayerApproached(nps) || TakeDamage(nps))
+        PatrolArea(NPC);
+        if (PlayerApproached(NPC) || TakeDamage(NPC))
         {
-            nps.anim.SetBool("isAggressive", true);
-            return nps.aggressive;
+            NPC.anim.SetBool("isAggressive", true);
+            return NPC.aggressive;
         }
         else
         {
-            return nps.idle;
+            return NPC.idle;
         }
     }
 
@@ -52,13 +52,14 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
         targetSpot = new Vector3(randomX, transform.position.y, randomZ);
     }
 
-    private void PatrolArea(NPS_StateController nps)
+    private void PatrolArea(NPS_StateController NPC)
     {
-        nps.npsNavMesh.SetDestination(targetSpot);
-        nps.anim.SetBool("isMoving", true);
+        NPC.npsNavMesh.SetDestination(targetSpot);
+        NPC.anim.SetBool("isMoving", true);
+
         if (Vector3.Distance(transform.position, targetSpot) < Offset)
         {
-            nps.anim.SetBool("isMoving", false);
+            NPC.anim.SetBool("isMoving", false);
             if (waitTime <= 0)
             {
                 FindNewPoint();
@@ -72,16 +73,16 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
         }
     }
 
-    private bool TakeDamage(NPS_StateController nps)
+    private bool TakeDamage(NPS_StateController NPC)
     {
         return ShootedByPlayer;
         //сделать сообщение всем в области, область=слушатель?? а потом гаврики=слушатели
     }
 
-    private bool PlayerApproached(NPS_StateController nps)
+    private bool PlayerApproached(NPS_StateController NPC)
     {
-        float distance = Vector3.Distance(transform.position, nps.target.position);
-        if (distance <= nps.aggrRadius)
+        float distance = Vector3.Distance(transform.position, NPC.target.position);
+        if (distance <= NPC.aggrRadius)
         {
             return true;
         }

@@ -20,6 +20,7 @@ public class NPS_StateController : MonoBehaviour
     public Animator anim;
 
     // Start is called before the first frame update
+
     private void Start()
     {
         npsNavMesh = GetComponent<NavMeshAgent>();
@@ -27,6 +28,8 @@ public class NPS_StateController : MonoBehaviour
         aggressive = GetComponent<NPS_AgressiveState>();
         anim = GetComponentInChildren<Animator>();
         target = GlobalEventManager.instanse.player.transform;
+
+        currentState = idle;
     }
 
     private void OnEnable()
