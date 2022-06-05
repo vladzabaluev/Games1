@@ -8870,6 +8870,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ad1d0d8f17b140418920d5b5a472a8f, type: 2}
   currentWeaphone: {fileID: 0}
   shootingPoint: {fileID: 1241765033}
+  Crosshair: {fileID: 1453246206}
+  HoverColor: {r: 0.6509804, g: 0, b: 0, a: 0.80784315}
   zoomingFOV: 25
 --- !u!95 &1449477728
 Animator:
@@ -8955,7 +8957,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1453246207
 CanvasRenderer:
@@ -16185,7 +16187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackPerSecond: 2
   Damage: 5
-  AttackRange: 7
+  AttackRange: 3
 --- !u!114 &1138067569734604596
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class PlayerStats : CharacterStats
 
     private void Start()
     {
-        GlobalEventManager.SendPlayerDamaged(currentHealth);
+        GlobalEventManager.SendPlayerDamaged(CurrentHealth);
         playerVolume = GetComponent<Volume>();
         playerVolume.profile.TryGet<Vignette>(out playerVignette);
         startVignetteIntensiv = playerVignette.intensity.value;
@@ -30,7 +30,7 @@ public class PlayerStats : CharacterStats
     {
         base.TakeDamage(damage);
 
-        GlobalEventManager.SendPlayerDamaged(currentHealth);
+        GlobalEventManager.SendPlayerDamaged(CurrentHealth);
         StartCoroutine(DamageEffect());
     }
 

@@ -9,21 +9,21 @@ public class CharacterStats : MonoBehaviour
     [SerializeField]
     private int currentHP;
 
-    public int currentHealth { get; private set; }
+    public int CurrentHealth { get; private set; }
 
     private void Awake()
     {
-        currentHealth = maxHealth;
-        currentHP = currentHealth;
+        CurrentHealth = maxHealth;
+        currentHP = CurrentHealth;
     }
 
     public virtual void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        currentHP = currentHealth;
+        CurrentHealth -= damage;
+        currentHP = CurrentHealth;
         Debug.Log(transform.name + " takes " + damage);
 
-        if (currentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
             Die();
         }

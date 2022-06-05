@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MainWeaphoneSystem : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class MainWeaphoneSystem : MonoBehaviour
 
     private Cinemachine.CinemachineVirtualCamera _currentVirtualCamera;
     private Animator anim;
+    public Image Crosshair;
+    public Color HoverColor;
+    private Color BaseColor;
 
     private PlayerInputActions p_Input;
     private InputAction i_switchWeaphone;
@@ -39,6 +43,7 @@ public class MainWeaphoneSystem : MonoBehaviour
     {
         p_Input = new PlayerInputActions();
         anim = GetComponent<Animator>();
+        BaseColor = Crosshair.color;
 
         GlobalEventManager.OnGamePaused.AddListener(DisablePlayerActionMap);
         GlobalEventManager.OnPlayerDead.AddListener(DisablePlayerActionMap);
@@ -105,20 +110,21 @@ public class MainWeaphoneSystem : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (curWStats.shootingType == Weaphone.ShootingType.Hold)
-        {
-            if (i_shoot.inProgress)
-            {
-                Shoot();
-            }
-        }
-        else
-        {
-            if (i_shoot.triggered)
-            {
-                Shoot();
-            }
-        }
+        //if (curWStats.shootingType == Weaphone.ShootingType.Hold)
+        //{
+        //    if (i_shoot.inProgress)
+        //    {
+        //        Shoot();
+        //    }
+        //}
+        //else
+        //{
+        //    if (i_shoot.triggered)
+        //    {
+        //        Shoot();
+        //    }
+        //}
+        Aiming();
         if (targetFOV != null)
             ZoomUpdater(targetFOV.Value);
     }
@@ -172,36 +178,37 @@ public class MainWeaphoneSystem : MonoBehaviour
         }
     }
 
-    private void Shoot()
-    {
-        RaycastHit hittedThings;
-        if (curWStats.currentBulletInClip <= 0)
-        {
-            Reload();
-        }
-        else
-        {
-            if (Time.time >= nextTimeShot)
-            {
-                if (curWStats.bulletPerSecond != 0)
-                    nextTimeShot = Time.time + 1 / curWStats.bulletPerSecond;
-                curWStats.currentBulletInClip--;
-                if (Physics.Raycast(shootingPoint.transform.position, shootingPoint.transform.forward, out hittedThings))
-                {
-                    Debug.Log(hittedThings.transform.name);
-                    if (hittedThings.transform.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
-                    {
-                        enemyStats.TakeDamage(curWStats.Damage);
-                        //Сделать чтобы не менялась переменная, а что-то адекватное(смотри NPS_Idle)
-                        //подумать над информацией хранящейся просто в нпс_стейт, возможно,
-                        //переменной ставить значение стоппингдистанс
-                        enemyStats.transform.GetComponent<NPS_IdleState>().ShootedByPlayer = true;
-                    }
-                }
-                GlobalEventManager.SendBulletAmountChanged(curWStats);
-            }
-        }
-    }
+    //private void Shoot()
+    //{
+    //    RaycastHit hittedThings;
+    //    if (curWStats.currentBulletInClip <= 0)
+    //    {
+    //        Reload();
+    //    }
+    //    else
+    //    {
+    //        if (Time.time >= nextTimeShot)
+    //        {
+    //            if (curWStats.bulletPerSecond != 0)
+    //                nextTimeShot = Time.time + 1 / curWStats.bulletPerSecond;
+    //            curWStats.currentBulletInClip--;
+    //            if (Physics.Raycast(shootingPoint.transform.position, shootingPoint.transform.forward, out hittedThings))
+    //            {
+    //                Debug.Log(hittedThings.transform.name);
+    //                if (hittedThings.transform.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
+    //                {
+    //                    enemyStats.TakeDamage(curWStats.Damage);
+    //                    //Сделать чтобы не менялась переменная, а что-то адекватное(смотри NPS_Idle)
+    //                    //подумать над информацией хранящейся просто в нпс_стейт, возможно,
+    //                    //переменной ставить значение стоппингдистанс
+    //                    enemyStats.transform.GetComponent<NPS_IdleState>().ShootedByPlayer = true;
+    //                }
+    //            }
+
+    //            GlobalEventManager.SendBulletAmountChanged(curWStats);
+    //        }
+    //    }
+    //}
 
     private void OnReload(InputAction.CallbackContext obj)
     {
@@ -254,6 +261,64 @@ public class MainWeaphoneSystem : MonoBehaviour
     {
         _currentVirtualCamera = Camera.main.GetComponent<CinemachineBrain>()
             .ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineVirtualCamera>();
+    }
+
+    private void Aiming()
+    {
+        if (Physics.Raycast(shootingPoint.transform.position, shootingPoint.transform.forward, out RaycastHit hoverThings))
+        {
+            if (curWStats.shootingType == Weaphone.ShootingType.Hold)
+            {
+                if (i_shoot.inProgress)
+                {
+                    Shoot(hoverThings);
+                }
+            }
+            else
+            {
+                if (i_shoot.triggered)
+                {
+                    Shoot(hoverThings);
+                }
+            }
+
+            if (hoverThings.transform.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
+            {
+                Crosshair.color = HoverColor;
+            }
+            else
+            {
+                Crosshair.color = BaseColor;
+            }
+        }
+    }
+
+    private void Shoot(RaycastHit hittedThings)
+    {
+        if (curWStats.currentBulletInClip <= 0)
+        {
+            Reload();
+        }
+        else
+        {
+            if (Time.time >= nextTimeShot)
+            {
+                if (curWStats.bulletPerSecond != 0)
+                    nextTimeShot = Time.time + 1 / curWStats.bulletPerSecond;
+                curWStats.currentBulletInClip--;
+
+                if (hittedThings.transform.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
+                {
+                    enemyStats.TakeDamage(curWStats.Damage);
+                    //Сделать чтобы не менялась переменная, а что-то адекватное(смотри NPS_Idle)
+                    //подумать над информацией хранящейся просто в нпс_стейт, возможно,
+                    //переменной ставить значение стоппингдистанс
+                    enemyStats.transform.GetComponent<NPS_IdleState>().ShootedByPlayer = true;
+                }
+
+                GlobalEventManager.SendBulletAmountChanged(curWStats);
+            }
+        }
     }
 
     private void OnDrawGizmos()
