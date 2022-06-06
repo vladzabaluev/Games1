@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPS_StateController : MonoBehaviour
+public class NPC_Controller : MonoBehaviour
 {
     [SerializeField]
-    private INPS_State currentState;
+    private INPC_State currentState;
 
-    public NPS_IdleState idle;
-    public NPS_AgressiveState aggressive;
+    public NPC_IdleState idle;
+    public NPC_AgressiveState aggressive;
 
-    public NavMeshAgent npsNavMesh;
+    public NavMeshAgent npcNavMesh;
 
     public float aggrRadius = 10;
 
@@ -23,9 +23,9 @@ public class NPS_StateController : MonoBehaviour
 
     private void Start()
     {
-        npsNavMesh = GetComponent<NavMeshAgent>();
-        idle = GetComponent<NPS_IdleState>();
-        aggressive = GetComponent<NPS_AgressiveState>();
+        npcNavMesh = GetComponent<NavMeshAgent>();
+        idle = GetComponent<NPC_IdleState>();
+        aggressive = GetComponent<NPC_AgressiveState>();
         anim = GetComponentInChildren<Animator>();
         target = GlobalEventManager.instanse.player.transform;
 

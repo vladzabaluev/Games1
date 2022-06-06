@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPS_AgressiveState : MonoBehaviour, INPS_State
+public class NPC_AgressiveState : MonoBehaviour, INPC_State
 {
     //public float TimeBetweenAttack = 1;
     public float AttackPerSecond = 2;
@@ -13,19 +13,19 @@ public class NPS_AgressiveState : MonoBehaviour, INPS_State
 
     public float AttackRange = 7f;
 
-    public INPS_State ChangeState(NPS_StateController NPC)
+    public INPC_State ChangeState(NPC_Controller NPC)
     {
         FollowPlayer(NPC);
         return this;
     }
 
-    private void FollowPlayer(NPS_StateController NPC)
+    private void FollowPlayer(NPC_Controller NPC)
     {
-        NPC.npsNavMesh.SetDestination(NPC.target.position);
+        NPC.npcNavMesh.SetDestination(NPC.target.position);
         if (Vector3.Distance(transform.position, NPC.target.position) <= AttackRange)
         {
             LookAtTheTarget(NPC);
-            NPC.npsNavMesh.isStopped = true;
+            NPC.npcNavMesh.isStopped = true;
             if (attackCooldown <= 0)
             {
                 if (LookAtTheTarget(NPC))
@@ -44,11 +44,11 @@ public class NPS_AgressiveState : MonoBehaviour, INPS_State
         }
         else
         {
-            NPC.npsNavMesh.isStopped = false;
+            NPC.npcNavMesh.isStopped = false;
         }
     }
 
-    private bool LookAtTheTarget(NPS_StateController NPC)
+    private bool LookAtTheTarget(NPC_Controller NPC)
     {
         Vector3 targetRotation = NPC.target.position - transform.position;
         targetRotation = targetRotation.normalized;
@@ -64,7 +64,7 @@ public class NPS_AgressiveState : MonoBehaviour, INPS_State
         }
     }
 
-    protected virtual IEnumerator Attack(NPS_StateController NPC, float delay)
+    protected virtual IEnumerator Attack(NPC_Controller NPC, float delay)
     {
         yield return new WaitForSeconds(delay);
     }

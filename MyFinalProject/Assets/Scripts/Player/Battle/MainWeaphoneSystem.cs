@@ -313,7 +313,7 @@ public class MainWeaphoneSystem : MonoBehaviour
                     //Сделать чтобы не менялась переменная, а что-то адекватное(смотри NPS_Idle)
                     //подумать над информацией хранящейся просто в нпс_стейт, возможно,
                     //переменной ставить значение стоппингдистанс
-                    enemyStats.transform.GetComponent<NPS_IdleState>().ShootedByPlayer = true;
+                    enemyStats.transform.GetComponent<NPC_IdleState>().ShootedByPlayer = true;
                 }
 
                 GlobalEventManager.SendBulletAmountChanged(curWStats);

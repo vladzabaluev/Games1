@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPS_IdleState : MonoBehaviour, INPS_State
+public class NPC_IdleState : MonoBehaviour, INPC_State
 {
     public Transform patrolArea;
+    private EnemiesTeam enemiesTeam;
+
     private float minX, minZ, maxX, maxZ;
 
     [SerializeField]
@@ -19,11 +21,12 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
     public bool ShootedByPlayer = false;
     // Start is called before the first frame update
 
-    public INPS_State ChangeState(NPS_StateController NPC)
+    public INPC_State ChangeState(NPC_Controller NPC)
     {
         PatrolArea(NPC);
-        if (PlayerApproached(NPC) || TakeDamage(NPC))
+        if (PlayerApproached(NPC) || ShootedByPlayer)
         {
+            enemiesTeam.SendOneEnemyDamaged();
             NPC.anim.SetBool("isAggressive", true);
             return NPC.aggressive;
         }
@@ -43,6 +46,8 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
 
         FindNewPoint();
         waitTime = startWaitTime;
+        enemiesTeam = patrolArea.GetComponent<EnemiesTeam>();
+        enemiesTeam.OneEnemyDamaged.AddListener(EnemyDamaged);
     }
 
     private void FindNewPoint()
@@ -52,9 +57,9 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
         targetSpot = new Vector3(randomX, transform.position.y, randomZ);
     }
 
-    private void PatrolArea(NPS_StateController NPC)
+    private void PatrolArea(NPC_Controller NPC)
     {
-        NPC.npsNavMesh.SetDestination(targetSpot);
+        NPC.npcNavMesh.SetDestination(targetSpot);
         NPC.anim.SetBool("isMoving", true);
 
         if (Vector3.Distance(transform.position, targetSpot) < Offset)
@@ -73,13 +78,12 @@ public class NPS_IdleState : MonoBehaviour, INPS_State
         }
     }
 
-    private bool TakeDamage(NPS_StateController NPC)
+    public void EnemyDamaged()
     {
-        return ShootedByPlayer;
-        //сделать сообщение всем в области, область=слушатель?? а потом гаврики=слушатели
+        ShootedByPlayer = true;
     }
 
-    private bool PlayerApproached(NPS_StateController NPC)
+    private bool PlayerApproached(NPC_Controller NPC)
     {
         float distance = Vector3.Distance(transform.position, NPC.target.position);
         if (distance <= NPC.aggrRadius)
