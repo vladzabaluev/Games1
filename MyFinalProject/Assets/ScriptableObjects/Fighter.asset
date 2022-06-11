@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9676c1cc1f71841805b05cf2c4f39b, type: 3}
-  m_Name: Pistol
+  m_Name: Fighter
   m_EditorClassIdentifier: 
   Damage: 50
   shootingRange: 7
