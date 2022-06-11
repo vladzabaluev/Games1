@@ -13,6 +13,8 @@ public class NPC_AgressiveState : MonoBehaviour, INPC_State
 
     public float AttackRange = 7f;
 
+    public bool newDevide;
+
     public INPC_State ChangeState(NPC_Controller NPC)
     {
         FollowPlayer(NPC);
@@ -28,12 +30,9 @@ public class NPC_AgressiveState : MonoBehaviour, INPC_State
             NPC.npcNavMesh.isStopped = true;
             if (attackCooldown <= 0)
             {
-                if (LookAtTheTarget(NPC))
-                {
-                    NPC.anim.SetTrigger("isAttack");
-                    StartCoroutine(Attack(NPC, NPC.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length));
-                    attackCooldown = 1 / AttackPerSecond;
-                }
+                NPC.anim.SetTrigger("isAttack");
+                StartCoroutine(Attack(NPC, NPC.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length));
+                attackCooldown = 1 / AttackPerSecond;
             }
             else
             {
@@ -48,25 +47,26 @@ public class NPC_AgressiveState : MonoBehaviour, INPC_State
         }
     }
 
-    private bool LookAtTheTarget(NPC_Controller NPC)
+    private void LookAtTheTarget(NPC_Controller NPC)
     {
         Vector3 targetRotation = NPC.target.position - transform.position;
         targetRotation = targetRotation.normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetRotation.x, 0, targetRotation.z));
-        if (transform.rotation == lookRotation)
-        {
-            return true;
-        }
-        else
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
-            return false;
-        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
+        //if (transform.rotation == lookRotation)
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
+        //    return false;
+        //}
     }
 
     protected virtual IEnumerator Attack(NPC_Controller NPC, float delay)
     {
-        yield return new WaitForSeconds(delay);
+        return null;
     }
 
     private void OnDrawGizmosSelected()

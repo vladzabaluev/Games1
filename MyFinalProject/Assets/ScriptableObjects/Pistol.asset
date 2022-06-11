@@ -12,13 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9676c1cc1f71841805b05cf2c4f39b, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  Damage: 14
+  Damage: 50
   shootingRange: 7
-  bulletPerSecond: 0
+  bulletPerSecond: 3
   "bulIn\u0421lip": 10
   allBullets: 50
-  currentBulletInClip: 3
-  currentAllBullet: 40
+  currentBulletInClip: 10
+  currentAllBullet: 50
   AutoShooting: 0
   shootingType: 0
+  ShotSound:
+    SoundName: Fighter
+    Clip: {fileID: 8300000, guid: 8194f988c4862564bb2f7137a9cd4dd5, type: 3}
+    Volume: 0.07
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0
   weaphoneColor: {r: 0.06454251, g: 0.12718119, b: 0.9245283, a: 0.972549}

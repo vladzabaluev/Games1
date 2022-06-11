@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class NPC_Controller : MonoBehaviour
 {
     [SerializeField]
-    private INPC_State currentState;
+    public INPC_State currentState;
 
     public NPC_IdleState idle;
     public NPC_AgressiveState aggressive;

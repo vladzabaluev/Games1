@@ -14,11 +14,18 @@ public class RocketBrain : MonoBehaviour
     public int Damage = 10;
     private Vector3 boomPoint;
 
+    [SerializeField]
+    private Sound LaunchSound;
+
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         StartCoroutine(DeadRocket(LifeTime));
+        audioSource = gameObject.AddComponent<AudioSource>();
+        AudioManager.PlaySound(LaunchSound, audioSource, false, false);
     }
 
     private void FixedUpdate()

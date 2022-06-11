@@ -23,10 +23,14 @@ public class PlayerMovement : MonoBehaviour
 
     private float fallVelocity;
 
+    public Sound Steps;
+    private AudioSource audioSource;
+
     // Start is called before the first frame updat
     private void Awake()
     {
         p_Input = new PlayerInputActions();
+        audioSource = gameObject.AddComponent<AudioSource>();
 
         GlobalEventManager.OnGamePaused.AddListener(DisablePlayerActionMap);
         GlobalEventManager.OnPlayerDead.AddListener(DisablePlayerActionMap);
@@ -87,6 +91,11 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
         Vector3 movingDirection = transform.right * inputDirection.x + transform.forward * inputDirection.z;
         p_Controller.Move(movingDirection.normalized * Speed * Time.deltaTime + new Vector3(0, fallVelocity, 0) * Time.deltaTime);
+        if (inputDirection != Vector3.zero && isGrounded)
+        {
+            Steps.Pitch = UnityEngine.Random.Range(1 - 0.1f, 1 + 0.1f);
+            AudioManager.PlaySound(Steps, audioSource, true, false);
+        }
     }
 
     private void Gravity()

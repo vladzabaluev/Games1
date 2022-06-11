@@ -4887,7 +4887,14 @@ MonoBehaviour:
     type: 3}
   LifeTime: 2
   boomOffset: 0.34
-  Damage: 10
+  Damage: 15
+  LaunchSound:
+    SoundName: RocketLaunch
+    Clip: {fileID: 8300000, guid: 2c972bffd571cdc4eafa3da61ed7fc68, type: 3}
+    Volume: 0.12
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 1
 --- !u!1 &17443073081653574
 GameObject:
   m_ObjectHideFlags: 0

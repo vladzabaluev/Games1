@@ -427,7 +427,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""OpenPauseMenu"",
+                    ""name"": ""EscClick"",
                     ""type"": ""Button"",
                     ""id"": ""3fe05c58-4f53-48be-8edf-5fc7c88d8ca3"",
                     ""expectedControlType"": ""Button"",
@@ -862,7 +862,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""OpenPauseMenu"",
+                    ""action"": ""EscClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -955,7 +955,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-        m_UI_OpenPauseMenu = m_UI.FindAction("OpenPauseMenu", throwIfNotFound: true);
+        m_UI_EscClick = m_UI.FindAction("EscClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1122,7 +1122,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
-    private readonly InputAction m_UI_OpenPauseMenu;
+    private readonly InputAction m_UI_EscClick;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1137,7 +1137,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
-        public InputAction @OpenPauseMenu => m_Wrapper.m_UI_OpenPauseMenu;
+        public InputAction @EscClick => m_Wrapper.m_UI_EscClick;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1177,9 +1177,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
-                @OpenPauseMenu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenPauseMenu;
-                @OpenPauseMenu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenPauseMenu;
-                @OpenPauseMenu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenPauseMenu;
+                @EscClick.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEscClick;
+                @EscClick.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEscClick;
+                @EscClick.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEscClick;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1214,9 +1214,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
-                @OpenPauseMenu.started += instance.OnOpenPauseMenu;
-                @OpenPauseMenu.performed += instance.OnOpenPauseMenu;
-                @OpenPauseMenu.canceled += instance.OnOpenPauseMenu;
+                @EscClick.started += instance.OnEscClick;
+                @EscClick.performed += instance.OnEscClick;
+                @EscClick.canceled += instance.OnEscClick;
             }
         }
     }
@@ -1290,6 +1290,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
-        void OnOpenPauseMenu(InputAction.CallbackContext context);
+        void OnEscClick(InputAction.CallbackContext context);
     }
 }

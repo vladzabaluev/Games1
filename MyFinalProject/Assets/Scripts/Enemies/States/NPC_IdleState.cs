@@ -48,6 +48,8 @@ public class NPC_IdleState : MonoBehaviour, INPC_State
         waitTime = startWaitTime;
         enemiesTeam = patrolArea.GetComponent<EnemiesTeam>();
         enemiesTeam.OneEnemyDamaged.AddListener(EnemyDamaged);
+
+        // Debug.LogWarning("Check Offset and Stoping Distance");
     }
 
     private void FindNewPoint()

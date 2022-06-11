@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6108991255086790022}
   - component: {fileID: 6108991255086790040}
   - component: {fileID: 6108991255086790041}
+  - component: {fileID: -9114375143358967940}
   m_Layer: 0
   m_Name: Dead Effect Purple
   m_TagString: Untagged
@@ -4863,3 +4864,22 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-9114375143358967940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6108991255086790043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c9d2d5d01ea4744bad966bb545fa96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadSound:
+    SoundName: Dead
+    Clip: {fileID: 8300000, guid: f00e58b4a500d1c438f7e966ec64be6f, type: 3}
+    Volume: 0.3
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0.9

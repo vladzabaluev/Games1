@@ -11,21 +11,32 @@ public class CharacterStats : MonoBehaviour
 
     public int CurrentHealth { get; private set; }
 
+    public Sound[] Sounds;
+
+    protected AudioSource audioSource;
+
     private void Awake()
     {
         CurrentHealth = maxHealth;
         currentHP = CurrentHealth;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     public virtual void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
         currentHP = CurrentHealth;
+
         Debug.Log(transform.name + " takes " + damage);
 
         if (CurrentHealth <= 0)
         {
             Die();
+        }
+        else
+        {
+            AudioManager.SetAudioSource("Damaged", Sounds, audioSource, true, false);
         }
     }
 

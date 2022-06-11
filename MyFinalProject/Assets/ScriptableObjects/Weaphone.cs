@@ -18,6 +18,8 @@ public class Weaphone : ScriptableObject
     public bool AutoShooting;
     public ShootingType shootingType;
 
+    public Sound ShotSound;
+
     public enum ShootingType
     {
         Tap,

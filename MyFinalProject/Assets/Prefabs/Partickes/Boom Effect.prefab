@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6097207835956343287}
   - component: {fileID: 6097207835956343241}
   - component: {fileID: 6097207835956343240}
+  - component: {fileID: 3643565519782377557}
   m_Layer: 0
   m_Name: Boom Effect
   m_TagString: Untagged
@@ -4862,3 +4863,22 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &3643565519782377557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6097207835956343286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c9d2d5d01ea4744bad966bb545fa96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadSound:
+    SoundName: Caboom
+    Clip: {fileID: 8300000, guid: 439f16f10fa18fd479815a5358bb54c9, type: 3}
+    Volume: 0.123
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0.9

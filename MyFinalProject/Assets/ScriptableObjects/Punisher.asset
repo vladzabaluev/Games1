@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9676c1cc1f71841805b05cf2c4f39b, type: 3}
+  m_Name: Punisher
+  m_EditorClassIdentifier: 
+  Damage: 35
+  shootingRange: 12.21
+  bulletPerSecond: 10
+  "bulIn\u0421lip": 30
+  allBullets: 120
+  currentBulletInClip: 25
+  currentAllBullet: 120
+  AutoShooting: 0
+  shootingType: 1
+  ShotSound:
+    SoundName: PunisherSound
+    Clip: {fileID: 8300000, guid: 49ac5091ef7458f47bf42dd259c9d8fd, type: 3}
+    Volume: 0.119
+    Pitch: 1
+    Loop: 0
+    SpatialBlend: 0
+  weaphoneColor: {r: 0.8773585, g: 0.12746526, b: 0.12746526, a: 1}

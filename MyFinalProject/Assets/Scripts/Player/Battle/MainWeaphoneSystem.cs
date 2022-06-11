@@ -1,5 +1,6 @@
 using Cinemachine;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -14,10 +15,12 @@ public class MainWeaphoneSystem : MonoBehaviour
     private float indexCurWeaphone = 0;
     public GameObject currentWeaphone;
     private Weaphone curWStats;
-    public GameObject shootingPoint;
+    public Transform shootingPoint;
 
+    private Camera mainCamera;
     private Cinemachine.CinemachineVirtualCamera _currentVirtualCamera;
     private Animator anim;
+
     public Image Crosshair;
     public Color HoverColor;
     private Color BaseColor;
@@ -31,6 +34,7 @@ public class MainWeaphoneSystem : MonoBehaviour
     private InputAction i_switchToSecond;
 
     private float nextTimeShot = 0;
+    private RaycastHit hoverThings;
 
     [SerializeField]
     private float zoomingFOV;
@@ -38,16 +42,24 @@ public class MainWeaphoneSystem : MonoBehaviour
     private float startFOV;
     private float? targetFOV;
 
+    private AudioSource audioSource;
+
+    public LineRenderer lineRenderer;
+
     // Start is called before the first frame update
     private void Awake()
     {
         p_Input = new PlayerInputActions();
         anim = GetComponent<Animator>();
+        audioSource = gameObject.AddComponent<AudioSource>();
+
         BaseColor = Crosshair.color;
 
         GlobalEventManager.OnGamePaused.AddListener(DisablePlayerActionMap);
         GlobalEventManager.OnPlayerDead.AddListener(DisablePlayerActionMap);
         GlobalEventManager.OnGameUnpaused.AddListener(EnablePlayerActionMap);
+
+        mainCamera = Camera.main;
     }
 
     private void DisablePlayerActionMap()
@@ -265,23 +277,11 @@ public class MainWeaphoneSystem : MonoBehaviour
 
     private void Aiming()
     {
-        if (Physics.Raycast(shootingPoint.transform.position, shootingPoint.transform.forward, out RaycastHit hoverThings))
-        {
-            if (curWStats.shootingType == Weaphone.ShootingType.Hold)
-            {
-                if (i_shoot.inProgress)
-                {
-                    Shoot(hoverThings);
-                }
-            }
-            else
-            {
-                if (i_shoot.triggered)
-                {
-                    Shoot(hoverThings);
-                }
-            }
+        Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
+        Ray ray = mainCamera.ScreenPointToRay(screenCenterPoint);
 
+        if (Physics.Raycast(ray, out hoverThings))
+        {
             if (hoverThings.transform.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
             {
                 Crosshair.color = HoverColor;
@@ -291,9 +291,24 @@ public class MainWeaphoneSystem : MonoBehaviour
                 Crosshair.color = BaseColor;
             }
         }
+
+        if (curWStats.shootingType == Weaphone.ShootingType.Hold)
+        {
+            if (i_shoot.inProgress)
+            {
+                StartCoroutine(Shoot());
+            }
+        }
+        else
+        {
+            if (i_shoot.triggered)
+            {
+                StartCoroutine(Shoot());
+            }
+        }
     }
 
-    private void Shoot(RaycastHit hittedThings)
+    private IEnumerator Shoot()
     {
         if (curWStats.currentBulletInClip <= 0)
         {
@@ -307,22 +322,39 @@ public class MainWeaphoneSystem : MonoBehaviour
                     nextTimeShot = Time.time + 1 / curWStats.bulletPerSecond;
                 curWStats.currentBulletInClip--;
 
-                if (hittedThings.transform.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
-                {
-                    enemyStats.TakeDamage(curWStats.Damage);
-                    //Сделать чтобы не менялась переменная, а что-то адекватное(смотри NPS_Idle)
-                    //подумать над информацией хранящейся просто в нпс_стейт, возможно,
-                    //переменной ставить значение стоппингдистанс
-                    enemyStats.transform.GetComponent<NPC_IdleState>().ShootedByPlayer = true;
-                }
+                HitCheck();
 
                 GlobalEventManager.SendBulletAmountChanged(curWStats);
+                AudioManager.PlaySound(curWStats.ShotSound, audioSource, false, false);
+
+                //lineRenderer.enabled = true;
+                //if (hoverThings.transform != null)
+                //{
+                //    lineRenderer.SetPosition(0, shootingPoint.position);
+                //    lineRenderer.SetPosition(1, hoverThings.transform.position);
+                //}
+                //else
+                //{
+                //    lineRenderer.SetPosition(0, shootingPoint.position);
+                //    lineRenderer.SetPosition(1, /*shootingPoint.position +*/ shootingPoint.forward * 100f);
+                //}
             }
         }
+        yield return 0;
+        //yield return new WaitForSeconds(0.02f);
+        //lineRenderer.enabled = false;
     }
 
-    private void OnDrawGizmos()
+    private void HitCheck()
     {
-        Gizmos.DrawRay(shootingPoint.transform.position, shootingPoint.transform.forward * 100);
+        if (hoverThings.transform != null)
+            if (hoverThings.transform.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
+            {
+                enemyStats.TakeDamage(curWStats.Damage);
+                //Сделать чтобы не менялась переменная, а что-то адекватное(смотри NPS_Idle)
+                //подумать над информацией хранящейся просто в нпс_стейт, возможно,
+                //переменной ставить значение стоппингдистанс
+                enemyStats.transform.GetComponent<NPC_IdleState>().ShootedByPlayer = true;
+            }
     }
 }

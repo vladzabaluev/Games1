@@ -27,6 +27,9 @@ public class GlobalEventManager : MonoBehaviour
     public static readonly UnityEvent OnGamePaused = new UnityEvent();
     public static readonly UnityEvent OnGameUnpaused = new UnityEvent();
 
+    public static readonly UnityEvent<int> OnEnemyDead = new UnityEvent<int>();
+    public static readonly UnityEvent OnAllEnemiesDead = new UnityEvent();
+
     public static void SendPlayerDamaged(int currentHealth) => OnPlayerDamaged.Invoke(currentHealth);
 
     public static void SendBulletAmountChanged(Weaphone weaphone) => OnBulletAmountChanged.Invoke(weaphone);
@@ -36,4 +39,18 @@ public class GlobalEventManager : MonoBehaviour
     public static void SendGamePaused() => OnGamePaused.Invoke();
 
     public static void SendGameUnpaused() => OnGameUnpaused.Invoke();
+
+    public static void SendEnemyDead(int enemiesLeft)
+    {
+        OnEnemyDead.Invoke(enemiesLeft);
+        if (enemiesLeft < 1)
+        {
+            SendAllEnemiesDead();
+        }
+    }
+
+    private static void SendAllEnemiesDead()
+    {
+        OnAllEnemiesDead.Invoke();
+    }
 }
