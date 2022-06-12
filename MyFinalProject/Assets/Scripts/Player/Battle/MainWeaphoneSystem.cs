@@ -46,6 +46,8 @@ public class MainWeaphoneSystem : MonoBehaviour
 
     public LineRenderer lineRenderer;
 
+    private CameraRecoil cameraRecoil;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -60,6 +62,7 @@ public class MainWeaphoneSystem : MonoBehaviour
         GlobalEventManager.OnGameUnpaused.AddListener(EnablePlayerActionMap);
 
         mainCamera = Camera.main;
+        cameraRecoil = GetComponentInParent<CameraRecoil>();
     }
 
     private void DisablePlayerActionMap()
@@ -296,19 +299,21 @@ public class MainWeaphoneSystem : MonoBehaviour
         {
             if (i_shoot.inProgress)
             {
-                StartCoroutine(Shoot());
+                Shoot();
+                //StartCoroutine(Shoot());
             }
         }
         else
         {
             if (i_shoot.triggered)
             {
-                StartCoroutine(Shoot());
+                Shoot();
+                //StartCoroutine(Shoot());
             }
         }
     }
 
-    private IEnumerator Shoot()
+    private void Shoot()
     {
         if (curWStats.currentBulletInClip <= 0)
         {
@@ -318,6 +323,7 @@ public class MainWeaphoneSystem : MonoBehaviour
         {
             if (Time.time >= nextTimeShot)
             {
+                cameraRecoil.RecoilFire();
                 if (curWStats.bulletPerSecond != 0)
                     nextTimeShot = Time.time + 1 / curWStats.bulletPerSecond;
                 curWStats.currentBulletInClip--;
@@ -340,7 +346,7 @@ public class MainWeaphoneSystem : MonoBehaviour
                 //}
             }
         }
-        yield return 0;
+        // yield return 0;
         //yield return new WaitForSeconds(0.02f);
         //lineRenderer.enabled = false;
     }

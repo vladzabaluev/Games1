@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 35
   shootingRange: 12.21
-  bulletPerSecond: 2
+  bulletPerSecond: 10
   "bulIn\u0421lip": 30
   allBullets: 120
-  currentBulletInClip: 15
-  currentAllBullet: 120
+  currentBulletInClip: 23
+  currentAllBullet: 90
   AutoShooting: 0
   shootingType: 1
   ShotSound:

@@ -20,6 +20,8 @@ public class Weaphone : ScriptableObject
 
     public Sound ShotSound;
 
+    //  public Vector3
+
     public enum ShootingType
     {
         Tap,
