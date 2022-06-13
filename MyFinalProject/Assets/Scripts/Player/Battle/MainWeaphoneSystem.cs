@@ -62,7 +62,7 @@ public class MainWeaphoneSystem : MonoBehaviour
         GlobalEventManager.OnGameUnpaused.AddListener(EnablePlayerActionMap);
 
         mainCamera = Camera.main;
-        cameraRecoil = GetComponentInParent<CameraRecoil>();
+        //cameraRecoil = GetComponentInParent<CameraRecoil>();
     }
 
     private void DisablePlayerActionMap()
@@ -323,7 +323,7 @@ public class MainWeaphoneSystem : MonoBehaviour
         {
             if (Time.time >= nextTimeShot)
             {
-                cameraRecoil.RecoilFire();
+               // cameraRecoil.RecoilFire();
                 if (curWStats.bulletPerSecond != 0)
                     nextTimeShot = Time.time + 1 / curWStats.bulletPerSecond;
                 curWStats.currentBulletInClip--;
