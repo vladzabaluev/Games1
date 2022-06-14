@@ -13,7 +13,7 @@ public class NPC_AgressiveState : MonoBehaviour, INPC_State
 
     public float AttackRange = 7f;
 
-    public bool newDevide;
+   // public bool newDevide;
 
     public INPC_State ChangeState(NPC_Controller NPC)
     {
