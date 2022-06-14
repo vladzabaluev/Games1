@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5a3462f0f29b8c640979f39c9ea48045,
+    type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 7d7cea2389252134bbde9059bb0a0e28,
     type: 2}
 --- !u!196 &4
@@ -146,7 +147,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &44041823
 Transform:
@@ -261,7 +262,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &61121605
 Transform:
@@ -376,7 +377,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &67001019
 Transform:
@@ -749,6 +750,7 @@ GameObject:
   - component: {fileID: 187183928}
   - component: {fileID: 187183927}
   - component: {fileID: 187183926}
+  - component: {fileID: 187183929}
   m_Layer: 0
   m_Name: PatroalArea (4)
   m_TagString: Untagged
@@ -834,6 +836,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187183924}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &187183929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187183924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13399b3a3d1ccbc4691500e6c4fd87b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OneEnemyDamaged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &189133166
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +867,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &189133167
 Transform:
@@ -1051,7 +1068,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &262564673
 Transform:
@@ -1172,7 +1189,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &313880406
 Transform:
@@ -1399,6 +1416,11 @@ PrefabInstance:
       propertyPath: patrolArea
       value: 
       objectReference: {fileID: 1002095851}
+    - target: {fileID: 1933175812630138109, guid: b2ee15f13079e7b4388ca99833cceb26,
+        type: 3}
+      propertyPath: aggrRadius
+      value: 9.86
+      objectReference: {fileID: 0}
     - target: {fileID: 1933175812630138110, guid: b2ee15f13079e7b4388ca99833cceb26,
         type: 3}
       propertyPath: m_RootOrder
@@ -1547,7 +1569,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &395639100
 Transform:
@@ -1838,7 +1860,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &416252185
 Transform:
@@ -2052,7 +2074,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &623843727
 Transform:
@@ -2165,7 +2187,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &628181211
 Transform:
@@ -2306,7 +2328,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &694438820
 Transform:
@@ -2492,6 +2514,7 @@ GameObject:
   - component: {fileID: 711454248}
   - component: {fileID: 711454247}
   - component: {fileID: 711454246}
+  - component: {fileID: 711454249}
   m_Layer: 0
   m_Name: PatroalArea (1)
   m_TagString: Untagged
@@ -2577,6 +2600,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711454244}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &711454249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711454244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13399b3a3d1ccbc4691500e6c4fd87b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OneEnemyDamaged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &723800411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2788,6 +2826,11 @@ PrefabInstance:
       propertyPath: patrolArea
       value: 
       objectReference: {fileID: 1002095851}
+    - target: {fileID: 1933175812630138109, guid: b2ee15f13079e7b4388ca99833cceb26,
+        type: 3}
+      propertyPath: aggrRadius
+      value: 9.86
+      objectReference: {fileID: 0}
     - target: {fileID: 1933175812630138110, guid: b2ee15f13079e7b4388ca99833cceb26,
         type: 3}
       propertyPath: m_RootOrder
@@ -3066,6 +3109,11 @@ PrefabInstance:
       propertyPath: patrolArea
       value: 
       objectReference: {fileID: 1002095851}
+    - target: {fileID: 2444779081799670111, guid: 729c74baa47a31d4d9772fda63dd74ea,
+        type: 3}
+      propertyPath: aggrRadius
+      value: 9.86
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 729c74baa47a31d4d9772fda63dd74ea, type: 3}
 --- !u!1001 &781461733
@@ -3140,6 +3188,11 @@ PrefabInstance:
       propertyPath: patrolArea
       value: 
       objectReference: {fileID: 1002095851}
+    - target: {fileID: 2444779081799670111, guid: 729c74baa47a31d4d9772fda63dd74ea,
+        type: 3}
+      propertyPath: aggrRadius
+      value: 9.86
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 729c74baa47a31d4d9772fda63dd74ea, type: 3}
 --- !u!4 &807972171 stripped
@@ -3349,7 +3402,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &873438101
 Transform:
@@ -3611,7 +3664,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &972400092
 Transform:
@@ -3726,7 +3779,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &988060042
 Transform:
@@ -3847,7 +3900,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &998574809
 Transform:
@@ -3958,6 +4011,7 @@ GameObject:
   - component: {fileID: 1002095854}
   - component: {fileID: 1002095853}
   - component: {fileID: 1002095852}
+  - component: {fileID: 1002095855}
   m_Layer: 0
   m_Name: PatroalArea
   m_TagString: Untagged
@@ -4043,6 +4097,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002095850}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1002095855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002095850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13399b3a3d1ccbc4691500e6c4fd87b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OneEnemyDamaged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1038746403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4452,7 +4521,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1218266764
 Transform:
@@ -4567,7 +4636,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1219748718
 Transform:
@@ -4682,7 +4751,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1222575190
 Transform:
@@ -4797,7 +4866,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1238696048
 Transform:
@@ -5599,7 +5668,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1497225300
 Transform:
@@ -5878,6 +5947,11 @@ PrefabInstance:
       propertyPath: patrolArea
       value: 
       objectReference: {fileID: 1002095851}
+    - target: {fileID: 1933175812630138109, guid: b2ee15f13079e7b4388ca99833cceb26,
+        type: 3}
+      propertyPath: aggrRadius
+      value: 9.86
+      objectReference: {fileID: 0}
     - target: {fileID: 1933175812630138110, guid: b2ee15f13079e7b4388ca99833cceb26,
         type: 3}
       propertyPath: m_RootOrder
@@ -5951,7 +6025,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1531883936
 Transform:
@@ -6323,7 +6397,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1598373681
 Transform:
@@ -6508,6 +6582,7 @@ GameObject:
   - component: {fileID: 1604227408}
   - component: {fileID: 1604227407}
   - component: {fileID: 1604227406}
+  - component: {fileID: 1604227409}
   m_Layer: 0
   m_Name: PatroalArea (5)
   m_TagString: Untagged
@@ -6593,6 +6668,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604227404}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1604227409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604227404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13399b3a3d1ccbc4691500e6c4fd87b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OneEnemyDamaged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1615786787
 GameObject:
   m_ObjectHideFlags: 0
@@ -6728,6 +6818,7 @@ GameObject:
   - component: {fileID: 1644235639}
   - component: {fileID: 1644235638}
   - component: {fileID: 1644235637}
+  - component: {fileID: 1644235640}
   m_Layer: 0
   m_Name: PatroalArea (2)
   m_TagString: Untagged
@@ -6813,6 +6904,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644235635}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1644235640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644235635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13399b3a3d1ccbc4691500e6c4fd87b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OneEnemyDamaged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1648143482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1933175812630138110, guid: b2ee15f13079e7b4388ca99833cceb26,
@@ -6847,7 +6953,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1670230379
 Transform:
@@ -6973,7 +7079,7 @@ PrefabInstance:
     - target: {fileID: 4956957608685750484, guid: f159ad000d3f720418337676529bb13c,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 1
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4956957608685750485, guid: f159ad000d3f720418337676529bb13c,
         type: 3}
@@ -7291,7 +7397,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1743628821
 Transform:
@@ -7842,7 +7948,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1873395113
 Transform:
@@ -7996,7 +8102,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1934043851
 Transform:
@@ -8418,7 +8524,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2080103643
 Transform:
@@ -8545,7 +8651,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2098145958
 Transform:
@@ -8703,7 +8809,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2121970492
 Transform:

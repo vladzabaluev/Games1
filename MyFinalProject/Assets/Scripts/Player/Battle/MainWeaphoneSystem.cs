@@ -85,9 +85,10 @@ public class MainWeaphoneSystem : MonoBehaviour
         currentWeaphone = weaphones[(int)indexCurWeaphone];
         currentWeaphone.SetActive(true);
         curWStats = wStates[(int)indexCurWeaphone];
+    //    Debug.Log(curWStats.name);
         GlobalEventManager.SendBulletAmountChanged(curWStats);
     }
-
+    
     private void OnEnable()
     {
         i_switchWeaphone = p_Input.Player.SwitchWeaphone;
@@ -110,6 +111,8 @@ public class MainWeaphoneSystem : MonoBehaviour
         i_reload.Enable();
         i_shoot.Enable();
         i_zoom.Enable();
+
+      
     }
 
     private void OnDisable()

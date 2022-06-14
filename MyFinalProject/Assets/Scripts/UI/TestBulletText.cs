@@ -10,12 +10,13 @@ public class TestBulletText : MonoBehaviour
 
     private void Awake()
     {
+        weaphoneText = GetComponent<TMP_Text>();
         GlobalEventManager.OnBulletAmountChanged.AddListener(UpdateText);
     }
 
     private void Start()
     {
-        weaphoneText = GetComponent<TMP_Text>();
+    
     }
 
     // Update is called once per frame
