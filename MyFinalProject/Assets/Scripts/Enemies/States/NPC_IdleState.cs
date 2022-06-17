@@ -20,7 +20,13 @@ public class NPC_IdleState : MonoBehaviour, INPC_State
 
     public bool ShootedByPlayer = false;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        enemiesTeam = patrolArea.GetComponent<EnemiesTeam>();
 
+        enemiesTeam.OneEnemyDamaged.AddListener(EnemyDamaged);
+        // 
+    }
     public INPC_State ChangeState(NPC_Controller NPC)
     {
         PatrolArea(NPC);
@@ -35,7 +41,7 @@ public class NPC_IdleState : MonoBehaviour, INPC_State
             return NPC.idle;
         }
     }
-
+   
     private void Start()
     {
         //npsNavMesh = GetComponent<NavMeshAgent>();
@@ -46,9 +52,9 @@ public class NPC_IdleState : MonoBehaviour, INPC_State
 
         FindNewPoint();
         waitTime = startWaitTime;
-        enemiesTeam = patrolArea.GetComponent<EnemiesTeam>();
-        enemiesTeam.OneEnemyDamaged.AddListener(EnemyDamaged);
+        //enemiesTeam = patrolArea.GetComponent<EnemiesTeam>();
 
+        //enemiesTeam.OneEnemyDamaged.AddListener(EnemyDamaged);
         // Debug.LogWarning("Check Offset and Stoping Distance");
     }
 

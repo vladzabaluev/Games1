@@ -18,6 +18,7 @@ public class CharacterStats : MonoBehaviour
     private void Awake()
     {
         CurrentHealth = maxHealth;
+        Debug.Log(CurrentHealth);
         currentHP = CurrentHealth;
 
         audioSource = gameObject.AddComponent<AudioSource>();

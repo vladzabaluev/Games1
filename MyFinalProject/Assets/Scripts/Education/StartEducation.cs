@@ -8,12 +8,8 @@ public class StartEducation : MonoBehaviour
     {
         Time.timeScale = 0;
 
-        GlobalEventManager.instanse.player.gameObject.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-        GlobalEventManager.instanse.player.gameObject.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
+        //GlobalEventManager.instanse.player.gameObject.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+        //GlobalEventManager.instanse.player.gameObject.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
     }
 
     private void Update()

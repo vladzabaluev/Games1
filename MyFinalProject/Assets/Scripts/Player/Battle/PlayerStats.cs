@@ -22,8 +22,10 @@ public class PlayerStats : CharacterStats
     private void Start()
     {
         GlobalEventManager.SendPlayerDamaged(CurrentHealth);
+
         playerVolume = GetComponent<Volume>();
         playerVolume.profile.TryGet<Vignette>(out playerVignette);
+
         startVignetteIntensiv = playerVignette.intensity.value;
     }
 

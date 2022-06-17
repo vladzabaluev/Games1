@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,6 +68,7 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 0;
         CoursorController.SetCursor(true);
         PauseMenu.SetActive(true);
+
         currentMenu = PauseMenu;
     }
 
@@ -90,6 +92,9 @@ public class MenuController : MonoBehaviour
         currentMenu = DeathMenu;
         Time.timeScale = 0;
         CoursorController.SetCursor(true);
+        Camera.main.GetComponent<CinemachineBrain>()
+            .ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineVirtualCamera>()
+            .GetComponent<CinemachineInputProvider>().enabled = false; 
     }
 
     public void RestartLVL()
@@ -130,6 +135,9 @@ public class MenuController : MonoBehaviour
 
     private void ShowCompleteMenu() //—À€ÿ ŒÃ  Œ—“€À‹ÕŒ
     {
+        Camera.main.GetComponent<CinemachineBrain>()
+    .ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineVirtualCamera>()
+    .GetComponent<CinemachineInputProvider>().enabled = false;
         currentMenu = LevelCompleteMenu;
         LevelCompleteMenu.SetActive(true);
         Time.timeScale = 0;

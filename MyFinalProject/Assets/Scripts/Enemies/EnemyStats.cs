@@ -14,7 +14,7 @@ public class EnemyStats : CharacterStats
     private void Start()
     {
         EnemiesOnLVL++;
-        GlobalEventManager.SendEnemyDead(EnemiesOnLVL);
+        GlobalEventManager.SendEnemyCount(EnemiesOnLVL);
     }
 
     public override void TakeDamage(int damage)
@@ -28,7 +28,7 @@ public class EnemyStats : CharacterStats
         EnemiesOnLVL--;
         base.Die();
         Instantiate(DeadEffect, deadEfPosition.position, Quaternion.Euler(-90, 0, 0), null);
-        GlobalEventManager.SendEnemyDead(EnemiesOnLVL);
+        GlobalEventManager.SendEnemyCount(EnemiesOnLVL);
         Destroy(gameObject);
     }
 }

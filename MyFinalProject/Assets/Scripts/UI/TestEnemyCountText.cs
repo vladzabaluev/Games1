@@ -10,14 +10,10 @@ public class TestEnemyCountText : MonoBehaviour
 
     private void Awake()
     {
-        GlobalEventManager.OnEnemyDead.AddListener(UpdateText);
+        enemiesCountText = GetComponent<TMP_Text>();
+        GlobalEventManager.EnemyCount.AddListener(UpdateText);
     }
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-        enemiesCountText = GetComponent<TMP_Text>();
-    }
 
     public void UpdateText(int enemiesLeft)
     {

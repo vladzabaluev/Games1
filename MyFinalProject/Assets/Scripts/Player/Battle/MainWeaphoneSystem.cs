@@ -62,16 +62,22 @@ public class MainWeaphoneSystem : MonoBehaviour
         GlobalEventManager.OnGameUnpaused.AddListener(EnablePlayerActionMap);
 
         mainCamera = Camera.main;
+       
+      //  Debug.Log(_currentVirtualCamera.name);
         //cameraRecoil = GetComponentInParent<CameraRecoil>();
     }
 
     private void DisablePlayerActionMap()
     {
+        FindCurrentVirtualCamera();
+        _currentVirtualCamera.GetComponent<CinemachineInputProvider>().enabled = false;
         p_Input.Player.Disable();
     }
 
     private void EnablePlayerActionMap()
     {
+        FindCurrentVirtualCamera();
+        _currentVirtualCamera.GetComponent<CinemachineInputProvider>().enabled = true;
         p_Input.Player.Enable();
     }
 

@@ -31,9 +31,9 @@ public class CameraRecoil : MonoBehaviour
     private void Update()
     {
         targetRotation = Vector2.Lerp(targetRotation, Vector2.zero, returnSpeed * Time.deltaTime);
-        Debug.Log(targetRotation);
+       // Debug.Log(targetRotation);
         currentRotation = Vector3.Slerp(currentRotation, targetRotation, snappiness * Time.fixedDeltaTime);
-        Debug.Log(currentRotation);
+       // Debug.Log(currentRotation);
         currentVirtualCameraPatametrs.m_Tilt = currentRotation.x;
         currentVirtualCameraPatametrs.m_Pan = currentRotation.y;
     }
